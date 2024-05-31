@@ -9,16 +9,15 @@ import { FreeMode, Pagination, Autoplay } from 'swiper/modules';
 
 const PopularCourses = () => {
     return (
-        <div>
-            <div className="hero min-h-screen my-8" style={{ backgroundImage: 'url(https://i.ibb.co/G0G78Cs/study-table-bg.jpg)' }}>
+        <div className='max-w-screen-xl mx-auto'>
+            <div className="hero md:min-h-screen my-5 md:my-8" style={{ backgroundImage: 'url(https://i.ibb.co/G0G78Cs/study-table-bg.jpg)' }}>
                 <div className="hero-overlay bg-opacity-80"></div>
                 <div className="hero-content text-center text-neutral-content">
-                    <div className="max-w-6xl">
+                    <div className="max-w-72 md:max-w-2xl lg:max-w-4xl xl:max-w-6xl">
                         <div>
-                            <h1 className='text-4xl mb-5 font-bold text-white'>Most Popular Courses</h1>
+                            <h1 className='md:text-4xl mb-5 font-bold text-white'>Most Popular Courses</h1>
                             <Swiper
-                                slidesPerView={3}
-                                spaceBetween={15}
+
                                 freeMode={true}
                                 pagination={{
                                     clickable: true,
@@ -28,6 +27,12 @@ const PopularCourses = () => {
                                 autoplay={{
                                     delay: 4000,
                                     disableOnInteraction: false,
+                                }}
+                                breakpoints={{
+                                    320: { slidesPerView: 1, spaceBetween: 15 },
+                                    480: { slidesPerView: 2, spaceBetween: 15 },
+                                    768: { slidesPerView: 3, spaceBetween: 25 },
+
                                 }}
                                 modules={[FreeMode, Pagination, Autoplay]}
                                 className="mySwiper"
