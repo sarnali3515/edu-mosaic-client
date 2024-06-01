@@ -8,7 +8,7 @@ import { Pagination, Navigation } from 'swiper/modules';
 
 const Feedback = () => {
     return (
-        <div className='max-w-screen-xl mx-auto my-12'>
+        <div className='max-w-screen-xl mx-auto my-14'>
             <h2 className='text-4xl mb-6 font-semibold text-center'>What Our Student Says?</h2>
             <Swiper
                 spaceBetween={30}
