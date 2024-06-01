@@ -1,0 +1,18 @@
+[
+    {
+        "title": "React for Beginners",
+        "instructor": "John Doe",
+        "image": "https://i.ibb.co/DrgV42C/teach-online-2-1.jpg",
+        "price": "$50",
+        "description": "Learn the basics of React in this comprehensive course.",
+        "totalEnrollment": 120
+    },
+    {
+        "title": "Advanced CSS Techniques",
+        "instructor": "Jane Smith",
+        "image": "https://i.ibb.co/DrgV42C/teach-online-2-1.jpg",
+        "price": "$75",
+        "description": "Master advanced CSS techniques to build stunning websites.",
+        "totalEnrollment": 85
+    }
+]

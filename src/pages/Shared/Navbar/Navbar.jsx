@@ -3,7 +3,6 @@ import './Navbar.css'
 
 
 const Navbar = () => {
-
     const navLinks =
         <>
             <li className="text-base font-medium"><NavLink to="/"> Home</NavLink></li>
@@ -11,7 +10,7 @@ const Navbar = () => {
             <li className="text-base font-medium"><NavLink to="/teach-on">Teach on EduMosaic</NavLink></li>
         </>
     return (
-        <div className="max-w-screen-xl mx-auto">
+        <div className="max-w-screen-xl mx-auto bg-white">
             <div className="navbar max-w-screen-xl fixed z-10  bg-white">
                 <div className="navbar-start">
                     <div className="dropdown">
@@ -30,7 +29,7 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <a className="btn">Sign In</a>
+                    <Link to="/login" className="btn btn-ghost underline">Login</Link>
                 </div>
             </div>
         </div>

@@ -1,67 +1,82 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-
-
-const fetchClasses = async () => {
-    return [
-        {
-            title: 'React for Beginners',
-            instructor: 'John Doe',
-            image: 'https://via.placeholder.com/300',
-            price: '$50',
-            description: 'Learn the basics of React in this comprehensive course.',
-            totalEnrollment: 120,
-        },
-        {
-            title: 'Advanced CSS Techniques',
-            instructor: 'Jane Smith',
-            image: 'https://via.placeholder.com/300',
-            price: '$75',
-            description: 'Master advanced CSS techniques to build stunning websites.',
-            totalEnrollment: 85,
-        },
-        // Add more classes as needed
-    ];
-};
+import useCourses from '../../hooks/useCourses';
 
 const AllClasses = () => {
+    const [courses] = useCourses();
 
-    const [classes, setClasses] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 2;
 
-    useEffect(() => {
-        const getClasses = async () => {
-            const classData = await fetchClasses();
-            setClasses(classData);
-        };
+    const indexOfLastCourse = currentPage * itemsPerPage;
+    const indexOfFirstCourse = indexOfLastCourse - itemsPerPage;
+    const currentCourses = courses.slice(indexOfFirstCourse, indexOfLastCourse);
 
-        getClasses();
-    }, []);
+    const totalPages = Math.ceil(courses.length / itemsPerPage);
+
+    const handleNextPage = () => {
+        if (currentPage < totalPages) {
+            setCurrentPage(prevPage => prevPage + 1);
+        }
+    };
+
+    const handlePrevPage = () => {
+        if (currentPage > 1) {
+            setCurrentPage(prevPage => prevPage - 1);
+        }
+    };
+
+    const handlePageClick = (pageNumber) => {
+        setCurrentPage(pageNumber);
+    };
+
     return (
-        <div className=" bg-purple-200 md:py-10 md:px-28">
-            <div >
-                <Helmet>
-                    <title>EduMosaic - All Classes</title>
-                </Helmet>
-                <div className="">
-                    <h1 className="text-3xl font-semibold mb-8 text-center">All Classes</h1>
-                    <div className="space-y-8">
-                        {classes.map((classItem, index) => (
-                            <div key={index} className="bg-white shadow-md rounded-lg overflow-hidden flex flex-col md:flex-row">
-                                <img src={classItem.image} alt={classItem.title} className="w-full md:w-1/3 h-64 md:h-72 object-cover p-5" />
-                                <div className="p-8 flex-1">
-                                    <h5 className='text-2xl font-semibold w-24 p-1 border border-purple-300 mb-3'>{classItem.price}.00</h5>
-                                    <h2 className='text-2xl md:text-3xl font-bold border-b-2 border-dashed pb-2 border-purple-400'>{classItem.title}</h2>
-
-                                    <p className='my-2'>{classItem.description}</p>
-                                    <p>Total Enrollment: {classItem.totalEnrollment}</p>
-                                    <button className='btn bg-purple-500 text-white px-5 mt-5'>Enroll Now</button>
-                                </div>
+        <div className="bg-purple-200 md:py-10 md:px-28 ">
+            <Helmet>
+                <title>EduMosaic - All Classes</title>
+            </Helmet>
+            <div className='max-w-screen-xl mx-auto'>
+                <h1 className="text-3xl font-semibold mb-8 text-center">All Classes</h1>
+                <div className="space-y-8">
+                    {currentCourses.map((course, index) => (
+                        <div key={index} className="bg-white shadow-md rounded-lg overflow-hidden flex flex-col md:flex-row">
+                            <img src={course.image} alt={course.title} className="w-full md:w-1/3 h-64 md:h-72 object-cover p-5" />
+                            <div className="p-8 flex-1">
+                                <h5 className="text-2xl font-semibold w-24 p-1 border border-purple-300 mb-3">{course.price}.00</h5>
+                                <h2 className="text-2xl md:text-3xl font-bold">{course.title}</h2>
+                                <p className="border-b-2 border-dashed pb-2 border-purple-400">By {course.instructor}</p>
+                                <p className="my-2">{course.description}</p>
+                                <p>Total Enrollment: {course.totalEnrollment}</p>
+                                <button className="btn bg-purple-500 text-white px-5 mt-3">Enroll Now</button>
                             </div>
-                        ))}
-                    </div>
+                        </div>
+                    ))}
                 </div>
-
-
+                <div className="flex justify-center items-center mt-8 space-x-2">
+                    <button
+                        className={`px-3 py-1 border rounded ${currentPage === 1 ? 'bg-gray-200 text-gray-500 cursor-not-allowed' : 'bg-white text-purple-500'}`}
+                        onClick={handlePrevPage}
+                        disabled={currentPage === 1}
+                    >
+                        Prev
+                    </button>
+                    {Array.from({ length: totalPages }, (_, index) => (
+                        <button
+                            key={index}
+                            className={`px-3 py-1 border rounded ${currentPage === index + 1 ? 'bg-purple-500 text-white' : 'bg-white text-purple-500'}`}
+                            onClick={() => handlePageClick(index + 1)}
+                        >
+                            {index + 1}
+                        </button>
+                    ))}
+                    <button
+                        className={`px-3 py-1 border rounded ${currentPage === totalPages ? 'bg-gray-200 text-gray-500 cursor-not-allowed' : 'bg-white text-purple-500'}`}
+                        onClick={handleNextPage}
+                        disabled={currentPage === totalPages}
+                    >
+                        Next
+                    </button>
+                </div>
             </div>
         </div>
     );

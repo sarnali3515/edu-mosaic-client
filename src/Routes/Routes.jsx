@@ -6,6 +6,8 @@ import Main from "../layout/Main";
 import Home from "../pages/Home/Home/Home";
 import AllClasses from "../pages/AllClasses/AllClasses";
 import TeachOn from "../pages/TeachOn/TeachOn";
+import SignUp from "../pages/Authentication/SignUp";
+import Login from "../pages/Authentication/Login";
 
 export const router = createBrowserRouter([
     {
@@ -23,6 +25,14 @@ export const router = createBrowserRouter([
             {
                 path: '/teach-on',
                 element: <TeachOn></TeachOn>
+            },
+            {
+                path: '/sign-up',
+                element: <SignUp></SignUp>
+            },
+            {
+                path: '/login',
+                element: <Login></Login>
             },
         ]
     },
