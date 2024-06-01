@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { Link } from "react-router-dom";
+import { AuthContext } from '../../providers/AuthProvider';
 
 const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
+    // const { signIn } = useContext(AuthContext)
 
     const handleLogin = event => {
         event.preventDefault();
@@ -11,10 +14,16 @@ const Login = () => {
         const email = form.email.value;
         const password = form.password.value;
         console.log(email, password);
+        // signIn(email, password)
+        //     .then(result => {
+        //         const user = result.user;
+        //         console.log(user);
+        //     })
+
     };
 
     return (
-        <div className="hero min-h-screen bg-purple-200">
+        <div className="hero py-10 bg-purple-200">
             <Helmet>
                 <title>EduMosaic - Login</title>
             </Helmet>
@@ -74,9 +83,11 @@ const Login = () => {
                         </svg>
                     </button>
                 </div>
+                <p className='text-center pb-5'><small>New Here? <Link to="/sign-up">Create an Account</Link></small></p>
             </div>
         </div>
     );
+
 };
 
 export default Login;
