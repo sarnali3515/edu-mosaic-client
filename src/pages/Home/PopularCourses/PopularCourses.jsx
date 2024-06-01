@@ -23,7 +23,6 @@ const PopularCourses = () => {
                                     clickable: true,
                                 }}
                                 loop={true}
-
                                 autoplay={{
                                     delay: 4000,
                                     disableOnInteraction: false,
@@ -32,7 +31,6 @@ const PopularCourses = () => {
                                     320: { slidesPerView: 1, spaceBetween: 15 },
                                     480: { slidesPerView: 2, spaceBetween: 15 },
                                     768: { slidesPerView: 3, spaceBetween: 25 },
-
                                 }}
                                 modules={[FreeMode, Pagination, Autoplay]}
                                 className="mySwiper"
@@ -42,12 +40,10 @@ const PopularCourses = () => {
                                         <figure className="">
                                             <img src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" className="" />
                                         </figure>
-                                        <div className="card-body items-center text-center">
+                                        <div className="card-body">
                                             <h2 className="card-title">Shoes!</h2>
                                             <p>If a dog chews shoes whose shoes does he choose?</p>
-                                            <div className="card-actions">
-                                                <button className="btn btn-primary">Buy Now</button>
-                                            </div>
+
                                         </div>
                                     </div>
                                 </SwiperSlide>
@@ -56,12 +52,10 @@ const PopularCourses = () => {
                                         <figure className="">
                                             <img src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" className="" />
                                         </figure>
-                                        <div className="card-body items-center text-center">
+                                        <div className="card-body">
                                             <h2 className="card-title">Shoes!</h2>
                                             <p>If a dog chews shoes whose shoes does he choose?</p>
-                                            <div className="card-actions">
-                                                <button className="btn btn-primary">Buy Now</button>
-                                            </div>
+
                                         </div>
                                     </div>
                                 </SwiperSlide>
@@ -70,12 +64,10 @@ const PopularCourses = () => {
                                         <figure className="">
                                             <img src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" className="" />
                                         </figure>
-                                        <div className="card-body items-center text-center">
+                                        <div className="card-body">
                                             <h2 className="card-title">Shoes!</h2>
                                             <p>If a dog chews shoes whose shoes does he choose?</p>
-                                            <div className="card-actions">
-                                                <button className="btn btn-primary">Buy Now</button>
-                                            </div>
+
                                         </div>
                                     </div>
                                 </SwiperSlide>
@@ -84,12 +76,10 @@ const PopularCourses = () => {
                                         <figure className="">
                                             <img src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" className="" />
                                         </figure>
-                                        <div className="card-body items-center text-center">
+                                        <div className="card-body">
                                             <h2 className="card-title">Shoes!</h2>
                                             <p>If a dog chews shoes whose shoes does he choose?</p>
-                                            <div className="card-actions">
-                                                <button className="btn btn-primary">Buy Now</button>
-                                            </div>
+
                                         </div>
                                     </div>
                                 </SwiperSlide>
@@ -98,12 +88,10 @@ const PopularCourses = () => {
                                         <figure className="">
                                             <img src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" className="" />
                                         </figure>
-                                        <div className="card-body items-center text-center">
+                                        <div className="card-body">
                                             <h2 className="card-title">Shoes!</h2>
                                             <p>If a dog chews shoes whose shoes does he choose?</p>
-                                            <div className="card-actions">
-                                                <button className="btn btn-primary">Buy Now</button>
-                                            </div>
+
                                         </div>
                                     </div>
                                 </SwiperSlide>
@@ -112,12 +100,10 @@ const PopularCourses = () => {
                                         <figure className="">
                                             <img src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" className="" />
                                         </figure>
-                                        <div className="card-body items-center text-center">
+                                        <div className="card-body">
                                             <h2 className="card-title">Shoes!</h2>
                                             <p>If a dog chews shoes whose shoes does he choose?</p>
-                                            <div className="card-actions">
-                                                <button className="btn btn-primary">Buy Now</button>
-                                            </div>
+
                                         </div>
                                     </div>
                                 </SwiperSlide>
@@ -126,12 +112,10 @@ const PopularCourses = () => {
                                         <figure className="">
                                             <img src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" className="" />
                                         </figure>
-                                        <div className="card-body items-center text-center">
+                                        <div className="card-body">
                                             <h2 className="card-title">Shoes!</h2>
                                             <p>If a dog chews shoes whose shoes does he choose?</p>
-                                            <div className="card-actions">
-                                                <button className="btn btn-primary">Buy Now</button>
-                                            </div>
+
                                         </div>
                                     </div>
                                 </SwiperSlide>
@@ -140,12 +124,10 @@ const PopularCourses = () => {
                                         <figure className="">
                                             <img src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" className="" />
                                         </figure>
-                                        <div className="card-body items-center text-center">
+                                        <div className="card-body">
                                             <h2 className="card-title">Shoes!</h2>
                                             <p>If a dog chews shoes whose shoes does he choose?</p>
-                                            <div className="card-actions">
-                                                <button className="btn btn-primary">Buy Now</button>
-                                            </div>
+
                                         </div>
                                     </div>
                                 </SwiperSlide>
