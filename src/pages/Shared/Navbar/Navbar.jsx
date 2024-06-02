@@ -35,7 +35,7 @@ const Navbar = () => {
     const navLinks =
         <>
             <li className="text-base font-medium"><NavLink to="/"> Home</NavLink></li>
-            <li className="text-base font-medium"><NavLink to="/all-classes">All Classes</NavLink></li>
+            <li className="text-base font-medium"><NavLink to="/courses">All Classes</NavLink></li>
             <li className="text-base font-medium"><NavLink to="/teach-on">Teach on EduMosaic</NavLink></li>
         </>
     return (

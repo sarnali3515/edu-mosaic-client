@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import useCourses from '../../hooks/useCourses';
+import { Link } from 'react-router-dom';
 
 const AllClasses = () => {
-    const [courses] = useCourses();
+    const [courses, isLoading] = useCourses();
+    console.log(courses);
 
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 2;
@@ -30,6 +32,12 @@ const AllClasses = () => {
         setCurrentPage(pageNumber);
     };
 
+    if (isLoading) {
+        return <div className="text-center my-10 md:my-20">
+            <span className="loading loading-lg loading-spinner text-success"></span>
+        </div>
+    }
+
     return (
         <div className="bg-purple-200 md:py-10 md:px-28 ">
             <Helmet>
@@ -47,7 +55,7 @@ const AllClasses = () => {
                                 <p className="border-b-2 border-dashed pb-2 border-purple-400">By {course.instructor}</p>
                                 <p className="my-2">{course.description}</p>
                                 <p>Total Enrollment: {course.totalEnrollment}</p>
-                                <button className="btn bg-purple-500 text-white px-5 mt-3">Enroll Now</button>
+                                <Link to={`${course._id}`}><button className="btn bg-purple-500 text-white px-5 mt-3">Enroll Now</button></Link>
                             </div>
                         </div>
                     ))}

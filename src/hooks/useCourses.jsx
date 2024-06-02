@@ -1,19 +1,19 @@
-import { useEffect, useState } from "react";
-
+import { useQuery } from "@tanstack/react-query";
+import useAxiosPublic from "./useAxiosPublic";
 
 const useCourses = () => {
-    const [courses, setClasses] = useState([]);
-    const [loading, setLoading] = useState(true);
-    useEffect(() => {
-        fetch('http://localhost:5000/courses')
-            .then(res => res.json())
-            .then(data => {
-                setClasses(data)
-                setLoading(false)
-            })
-    }, [])
 
-    return [courses, loading]
+    const axiosPublic = useAxiosPublic();
+    const { data: courses = [], isLoading } = useQuery({
+        queryKey: ['courses'],
+        queryFn: async () => {
+            const { data } = await axiosPublic.get('/courses')
+            console.log(data);
+            return data;
+        }
+    })
+
+    return [courses, isLoading]
 };
 
 export default useCourses;
