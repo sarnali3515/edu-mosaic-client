@@ -8,6 +8,8 @@ import AllClasses from "../pages/AllClasses/AllClasses";
 import TeachOn from "../pages/TeachOn/TeachOn";
 import SignUp from "../pages/Authentication/SignUp";
 import Login from "../pages/Authentication/Login";
+import PrivateRoute from "./PrivateRoute";
+import Dashboard from "../layout/Dashboard";
 
 export const router = createBrowserRouter([
     {
@@ -24,7 +26,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/teach-on',
-                element: <TeachOn></TeachOn>
+                element: <PrivateRoute><TeachOn></TeachOn></PrivateRoute>
             },
             {
                 path: '/sign-up',
@@ -36,4 +38,14 @@ export const router = createBrowserRouter([
             },
         ]
     },
+    {
+        path: 'dashboard',
+        element: <Dashboard></Dashboard>,
+        children: [
+            // {
+            //     path:'enroll-class',
+
+            // }
+        ]
+    }
 ]);

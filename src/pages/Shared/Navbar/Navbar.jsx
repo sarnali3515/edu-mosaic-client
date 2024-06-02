@@ -1,13 +1,12 @@
 import { Link, NavLink } from "react-router-dom";
 import './Navbar.css'
-import { useContext } from "react";
 import { RiLogoutCircleLine } from "react-icons/ri";
-import { AuthContext } from "../../../providers/AuthProvider";
 import Swal from "sweetalert2";
+import useAuth from "../../../hooks/useAuth";
 
 
 const Navbar = () => {
-    const { user, logOut, loading } = useContext(AuthContext);
+    const { user, logOut, loading } = useAuth()
 
     const handleSignOut = () => {
         logOut()

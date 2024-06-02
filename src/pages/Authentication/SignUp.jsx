@@ -3,14 +3,15 @@ import { Helmet } from 'react-helmet-async';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { useState } from "react";
 import { useForm } from "react-hook-form"
-import { useContext } from "react";
-import { AuthContext } from "../../providers/AuthProvider";
 import Swal from 'sweetalert2'
+import useAuth from "../../hooks/useAuth";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const SignUp = () => {
 
-    const { createUser, updateUserProfile } = useContext(AuthContext);
+    const { createUser, updateUserProfile, googleSignIn } = useAuth()
     const navigate = useNavigate()
+    const axiosPublic = useAxiosPublic();
 
     const {
         register,
@@ -30,6 +31,43 @@ const SignUp = () => {
                     .then(() => {
                         console.log('user info updated');
                         reset();
+                        const userInfo = {
+                            name: data.name,
+                            email: data.email,
+                            phone: data.phone
+                        }
+
+                        axiosPublic.post('/users', userInfo)
+                            .then(res => {
+                                console.log(res.data);
+                                Swal.fire({
+                                    position: "top-end",
+                                    icon: "success",
+                                    title: "Sign Up Successful!",
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                });
+                                navigate(location?.state ? location.state : '/');
+                            })
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    })
+            })
+    }
+
+    const handleGoogleSignIn = () => {
+        googleSignIn()
+            .then(result => {
+                console.log(result);
+                const userInfo = {
+                    email: result.user?.email,
+                    name: result.user?.displayName
+                }
+
+                axiosPublic.post('/users', userInfo)
+                    .then(res => {
+                        console.log(res.data);
                         Swal.fire({
                             position: "top-end",
                             icon: "success",
@@ -39,9 +77,17 @@ const SignUp = () => {
                         });
                         navigate(location?.state ? location.state : '/');
                     })
-                    .catch(error => {
-                        console.log(error);
-                    })
+
+            })
+            .catch(error => {
+                console.log(error);
+                Swal.fire({
+                    position: "top-end",
+                    icon: "error",
+                    title: "Failed Sign Up",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
             })
     }
 
@@ -125,7 +171,7 @@ const SignUp = () => {
                     </div>
                 </form>
                 <div className="flex justify-center space-x-4 mb-8">
-                    <button title="Google" className="hover:bg-purple-300 rounded-full flex items-center">
+                    <button onClick={handleGoogleSignIn} title="Google" className="hover:bg-purple-300 rounded-full flex items-center">
                         <svg className="w-8 h-8 mx-2" viewBox="0 0 40 40">
                             <path d="M36.3425 16.7358H35V16.6667H20V23.3333H29.4192C28.045 27.2142 24.3525 30 20 30C14.4775 30 10 25.5225 10 20C10 14.4775 14.4775 9.99999 20 9.99999C22.5492 9.99999 24.8683 10.9617 26.6342 12.5325L31.3483 7.81833C28.3717 5.04416 24.39 3.33333 20 3.33333C10.7958 3.33333 3.33335 10.7958 3.33335 20C3.33335 29.2042 10.7958 36.6667 20 36.6667C29.2042 36.6667 36.6667 29.2042 36.6667 20C36.6667 18.8825 36.5517 17.7917 36.3425 16.7358Z" fill="#FFC107" />
                             <path d="M5.25497 12.2425L10.7308 16.2583C12.2125 12.59 15.8008 9.99999 20 9.99999C22.5491 9.99999 24.8683 10.9617 26.6341 12.5325L31.3483 7.81833C28.3716 5.04416 24.39 3.33333 20 3.33333C13.5983 3.33333 8.04663 6.94749 5.25497 12.2425Z" fill="#FF3D00" />
