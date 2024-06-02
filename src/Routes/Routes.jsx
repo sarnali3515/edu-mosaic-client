@@ -11,6 +11,9 @@ import Login from "../pages/Authentication/Login";
 import PrivateRoute from "./PrivateRoute";
 import Dashboard from "../layout/Dashboard";
 import ClassDetails from "../pages/ClassDetails/ClassDetails";
+import Profile from "../pages/Dashboard/Profile/Profile";
+import AddClass from "../pages/Dashboard/Teacher/AddClass";
+import MyClasses from "../pages/Dashboard/Teacher/MyClasses";
 
 export const router = createBrowserRouter([
     {
@@ -39,7 +42,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/courses/:id',
-                element: <ClassDetails></ClassDetails>
+                element: <PrivateRoute><ClassDetails></ClassDetails></PrivateRoute>
             },
         ]
     },
@@ -47,10 +50,18 @@ export const router = createBrowserRouter([
         path: 'dashboard',
         element: <Dashboard></Dashboard>,
         children: [
-            // {
-            //     path:'enroll-class',
-
-            // }
+            {
+                index: true,
+                element: <Profile></Profile>
+            },
+            {
+                path: 'add-class',
+                element: <AddClass></AddClass>
+            },
+            {
+                path: 'my-classes',
+                element: <MyClasses></MyClasses>
+            },
         ]
     }
 ]);

@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Helmet } from 'react-helmet-async';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { useState } from "react";
@@ -11,7 +11,9 @@ const SignUp = () => {
 
     const { createUser, updateUserProfile, googleSignIn } = useAuth()
     const navigate = useNavigate()
+    const location = useLocation()
     const axiosPublic = useAxiosPublic();
+
 
     const {
         register,

@@ -1,16 +1,23 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
+import Sidebar from "../pages/Dashboard/Sidebar/Sidebar";
 
 
 const Dashboard = () => {
     return (
-        <div>
-            <div className="w-64 min-h-full bg-purple-500 text-white">
-                <ul className="menu">
-                    <li><NavLink to="/dashboard/user">Dashboard User</NavLink></li>
-                </ul>
+        <div className="relative min-h-screen md:flex">
+
+            {/* sidebar */}
+
+            <div>
+                <Sidebar></Sidebar>
             </div>
-            <div className="flex-1">
-                <Outlet></Outlet>
+
+            {/* outlet */}
+            <div className="flex-1 md:ml-64">
+
+                <div className="p-5">
+                    <Outlet></Outlet>
+                </div>
             </div>
         </div>
     );
