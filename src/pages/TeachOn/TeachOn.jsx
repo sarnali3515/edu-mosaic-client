@@ -1,31 +1,16 @@
 import { Helmet } from 'react-helmet-async';
-import { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../providers/AuthProvider';
-import { toast } from 'react-toastify';
 
 
 const TeachOn = () => {
     const { user } = useContext(AuthContext);
-    const { register, handleSubmit, formState: { errors }, reset } = useForm();
-    const [status, setStatus] = useState(null);
-
-
-    // useEffect(() => {
-    //     const fetchStatus = async () => {
-    //         const dbRef = ref(getDatabase());
-    //         const snapshot = await get(child(dbRef, `teacherRequests/${user.uid}`));
-    //         if (snapshot.exists()) {
-    //             setStatus(snapshot.val().status);
-    //         }
-    //     };
-    //     fetchStatus();
-    // }, [user]);
+    const { register, handleSubmit, formState: { errors } } = useForm();
 
     const onSubmit = async (data) => {
-
+        console.log(data);
     };
-
 
 
     return (
@@ -43,6 +28,7 @@ const TeachOn = () => {
                                 <input
                                     type="text"
                                     {...register('name', { required: true })}
+                                    placeholder="Enter your name"
                                     className="input input-bordered"
                                 />
                                 {errors.name && <span className="text-red-600">Name is required</span>}
@@ -52,6 +38,7 @@ const TeachOn = () => {
                                 <input
                                     type="text"
                                     {...register('image', { required: true })}
+                                    placeholder="Enter image URL"
                                     className="input input-bordered"
                                 />
                                 {errors.image && <span className="text-red-600">Image is required</span>}
@@ -60,7 +47,7 @@ const TeachOn = () => {
                                 <label className="label">Email</label>
                                 <input
                                     type="email"
-                                    value={user?.email}
+                                    defaultValue={user?.email}
                                     readOnly
                                     className="input input-bordered"
                                 />
@@ -69,7 +56,8 @@ const TeachOn = () => {
                                 <label className="label">Experience</label>
                                 <select
                                     {...register('experience', { required: true })}
-                                    className="input input-bordered"
+                                    className=" select input input-bordered"
+                                    defaultValue=""
                                 >
                                     <option value="" disabled>Select Experience</option>
                                     <option value="beginner">Beginner</option>
@@ -83,6 +71,7 @@ const TeachOn = () => {
                                 <input
                                     type="text"
                                     {...register('title', { required: true })}
+                                    placeholder="Enter your title"
                                     className="input input-bordered"
                                 />
                                 {errors.title && <span className="text-red-600">Title is required</span>}
@@ -91,7 +80,8 @@ const TeachOn = () => {
                                 <label className="label">Category</label>
                                 <select
                                     {...register('category', { required: true })}
-                                    className="input input-bordered"
+                                    className="select input input-bordered"
+                                    defaultValue=""
                                 >
                                     <option value="" disabled>Select Category</option>
                                     <option value="web development">Web Development</option>
@@ -106,15 +96,6 @@ const TeachOn = () => {
                                 <button type="submit" className="btn bg-purple-600 text-white">Submit for Review</button>
                             </div>
                         </form>
-                        {/* {status === 'approved' && <p>Your application has been approved!</p>}
-                        {status === 'rejected' && (
-                            <>
-                                <p>Your application was rejected. Please submit again.</p>
-                                {renderForm()}
-                            </>
-                        )}
-                        {status === 'pending' && <p>Your application is under review.</p>}
-                        {!status && renderForm()} */}
                     </div>
                 </div>
             </div>
