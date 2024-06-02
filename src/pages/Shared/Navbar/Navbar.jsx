@@ -1,8 +1,38 @@
 import { Link, NavLink } from "react-router-dom";
 import './Navbar.css'
+import { useContext } from "react";
+import { RiLogoutCircleLine } from "react-icons/ri";
+import { AuthContext } from "../../../providers/AuthProvider";
+import Swal from "sweetalert2";
 
 
 const Navbar = () => {
+    const { user, logOut, loading } = useContext(AuthContext);
+
+    const handleSignOut = () => {
+        logOut()
+            .then(
+                result => {
+                    console.log(result)
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Logout Successfully!",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+            )
+            .catch();
+    };
+    if (loading) {
+        return (
+            <div className="text-center my-4 md:my-6">
+                <span className="loading loading-lg loading-spinner text-success"></span>
+            </div>
+        );
+    }
+
     const navLinks =
         <>
             <li className="text-base font-medium"><NavLink to="/"> Home</NavLink></li>
@@ -29,7 +59,27 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <Link to="/login" className="btn btn-ghost underline">Login</Link>
+                    {user ? (
+                        <>
+                            <div className="dropdown z-10 dropdown-hover dropdown-bottom dropdown-end">
+                                <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                                    <div className="w-10 rounded-full" title={user.displayName}>
+                                        <img alt={user.displayName} src={user.photoURL} />
+                                    </div>
+                                </div>
+                                <ul tabIndex={0} className="dropdown-content space-y-2 z-[1] menu shadow bg-base-100 rounded-box w-56">
+                                    <li><button className="btn bg-purple-500 text-white">{user.displayName}</button></li>
+                                    <li><button onClick={handleSignOut} className="btn bg-purple-500 text-white"><RiLogoutCircleLine></RiLogoutCircleLine>Log Out</button></li>
+                                </ul>
+                            </div>
+                        </>
+                    ) : (
+                        <>
+
+                            <Link to="/login" className="btn btn-ghost underline">Login</Link>
+                        </>
+                    )}
+
                 </div>
             </div>
         </div>

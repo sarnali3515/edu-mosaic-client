@@ -1,25 +1,50 @@
 import { useContext, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from '../../providers/AuthProvider';
+import { toast } from "react-toastify";
+import { useForm } from 'react-hook-form';
+import Swal from 'sweetalert2';
 
 const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
-    // const { signIn } = useContext(AuthContext)
+    const { signIn } = useContext(AuthContext)
+    const navigate = useNavigate();
+    const location = useLocation();
 
-    const handleLogin = event => {
-        event.preventDefault();
-        const form = event.target;
-        const email = form.email.value;
-        const password = form.password.value;
-        console.log(email, password);
-        // signIn(email, password)
-        //     .then(result => {
-        //         const user = result.user;
-        //         console.log(user);
-        //     })
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm()
 
+    const onSubmit = (data) => {
+        console.log(data);
+        signIn(data.email, data.password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Sign Up Successful!",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                navigate(location?.state ? location.state : '/');
+            })
+            .catch(error => {
+                toast.error('Login Failed');
+                Swal.fire({
+                    position: "top-end",
+                    icon: "error",
+                    title: "Incorrect Email or Password",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                console.error(error);
+            });
     };
 
     return (
@@ -29,12 +54,13 @@ const Login = () => {
             </Helmet>
             <div className="card w-full max-w-lg border border-purple-600">
                 <h2 className="text-3xl text-center font-bold mt-8">Login</h2>
-                <form onSubmit={handleLogin} className="card-body">
+                <form onSubmit={handleSubmit(onSubmit)} className="card-body">
                     <div className="form-control pt-5 border-t-2 border-purple-400">
                         <label className="label">
                             <span className="label-text">Email</span>
                         </label>
-                        <input type="email" name="email" placeholder="email" className="input input-bordered" required />
+                        <input type="email"  {...register("email", { required: true })} name="email" placeholder="Email Address" className="input input-bordered" />
+                        {errors.email && <span className="text-red-600">* Email is required</span>}
                     </div>
                     <div className="form-control">
                         <label className="label">
@@ -43,10 +69,11 @@ const Login = () => {
                         <div className="relative">
                             <input
                                 type={showPassword ? 'text' : 'password'}
+                                {...register("password", { required: true })}
                                 name="password"
-                                placeholder="password"
+                                placeholder="Password"
                                 className="input input-bordered w-full pr-10"
-                                required
+
                             />
                             <span
                                 className="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer"
@@ -55,6 +82,7 @@ const Login = () => {
                                 {showPassword ? <FaEyeSlash /> : <FaEye />}
                             </span>
                         </div>
+                        {errors.password && <span className="text-red-600">* Password is required</span>}
                         <label className="label">
                             <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                         </label>
@@ -83,7 +111,7 @@ const Login = () => {
                         </svg>
                     </button>
                 </div>
-                <p className='text-center pb-5'><small>New Here? <Link to="/sign-up">Create an Account</Link></small></p>
+                <p className='text-center pb-5'><small>New Here? <Link className='text-blue-700 hover:underline' to="/sign-up">Create an Account</Link></small></p>
             </div>
         </div>
     );

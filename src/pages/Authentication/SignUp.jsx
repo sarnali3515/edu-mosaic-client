@@ -1,21 +1,48 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Helmet } from 'react-helmet-async';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { useState } from "react";
 import { useForm } from "react-hook-form"
-
-
+import { useContext } from "react";
+import { AuthContext } from "../../providers/AuthProvider";
+import Swal from 'sweetalert2'
 
 const SignUp = () => {
+
+    const { createUser, updateUserProfile } = useContext(AuthContext);
+    const navigate = useNavigate()
+
     const {
         register,
         handleSubmit,
-        watch,
+        reset,
         formState: { errors },
     } = useForm()
 
     const onSubmit = (data) => {
-        console.log(data)
+        console.log(data);
+        createUser(data.email, data.password)
+            .then(result => {
+                const loggedUser = result.user;
+                console.log(loggedUser);
+
+                updateUserProfile(data.name, data.photo)
+                    .then(() => {
+                        console.log('user info updated');
+                        reset();
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "success",
+                            title: "Sign Up Successful!",
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        navigate(location?.state ? location.state : '/');
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    })
+            })
     }
 
     const [showPassword, setShowPassword] = useState(false);
@@ -31,14 +58,14 @@ const SignUp = () => {
                         <label className="label">
                             <span className="label-text">Name</span>
                         </label>
-                        <input type="text" {...register("name", { required: true })} name="name" placeholder="name" className="input input-bordered" />
+                        <input type="text" {...register("name", { required: true })} name="name" placeholder="Your Name" className="input input-bordered" />
                         {errors.name && <span className="text-red-600">* Name is required</span>}
                     </div>
                     <div className="form-control ">
                         <label className="label">
                             <span className="label-text">Email</span>
                         </label>
-                        <input type="email" {...register("email", { required: true })} name="email" placeholder="email" className="input input-bordered" />
+                        <input type="email" {...register("email", { required: true })} name="email" placeholder="Email Address" className="input input-bordered" />
                         {errors.email && <span className="text-red-600">* Email is required</span>}
                     </div>
                     <div className="form-control">
@@ -56,7 +83,7 @@ const SignUp = () => {
                                         pattern: /^(?=.*[A-Z])(?=.*[a-z]).{6,15}$/
                                     })}
                                 name="password"
-                                placeholder="password"
+                                placeholder="Password"
                                 className="input input-bordered w-full pr-10"
 
                             />
@@ -69,14 +96,20 @@ const SignUp = () => {
                         </div>
                         {errors.password?.type === 'required' && <span className="text-red-600">* Password is required</span>}
                         {errors.password?.type === 'minLength' && <span className="text-red-600">* Password must be 6 characters</span>}
-
                         {errors.password?.type === 'pattern' && <span className="text-red-600">* Password must have one uppercase, one lowercase</span>}
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Photo URL</span>
                             </label>
-                            <input type="text" {...register("photo", { required: true })} name="photo" placeholder="photo" className="input input-bordered" required />
+                            <input type="text" {...register("photo", { required: true })} name="photo" placeholder="Photo URL" className="input input-bordered" required />
                             {errors.photo && <span className="text-red-600">* Photo URL is required</span>}
+                        </div>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Phone Number</span>
+                            </label>
+                            <input type="text" {...register("phone", { required: true })} name="phone" placeholder="Phone Number" className="input input-bordered" required />
+                            {errors.phone && <span className="text-red-600">* Phone is required</span>}
                         </div>
                         <label className="label">
                             <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
@@ -106,7 +139,7 @@ const SignUp = () => {
                         </svg>
                     </button>
                 </div>
-                <p className='text-center pb-5'><small>Already have an Account? <Link to="/login">Login now.</Link></small></p>
+                <p className='text-center pb-5'><small>Already have an Account? <Link className='text-blue-700 hover:underline' to="/login">Login now.</Link></small></p>
             </div>
         </div>
     );
