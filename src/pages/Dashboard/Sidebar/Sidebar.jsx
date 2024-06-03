@@ -1,18 +1,12 @@
 import { useState } from 'react'
-import { GrLogout } from 'react-icons/gr'
-import { FcSettings } from 'react-icons/fc'
 import { AiOutlineBars } from 'react-icons/ai'
-import { MdHomeWork } from 'react-icons/md'
 import { CgProfile } from "react-icons/cg";
 import { FaRegAddressCard } from "react-icons/fa";
 import { SiGoogleclassroom } from "react-icons/si";
-
 import { NavLink } from 'react-router-dom'
-import useAuth from '../../../hooks/useAuth'
 import { Link } from 'react-router-dom'
 
 const Sidebar = () => {
-    const { logOut } = useAuth()
     const [isActive, setActive] = useState(true)
 
     // Sidebar Responsive Handler

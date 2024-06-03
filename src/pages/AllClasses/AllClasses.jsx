@@ -46,8 +46,8 @@ const AllClasses = () => {
             <div className='max-w-screen-xl mx-auto'>
                 <h1 className="text-3xl font-semibold mb-8 text-center">All Classes</h1>
                 <div className="space-y-8">
-                    {currentCourses.map((course, index) => (
-                        <div key={index} className="bg-white shadow-md rounded-lg overflow-hidden flex flex-col md:flex-row">
+                    {currentCourses.map((course) => (
+                        <div key={course._id} className="bg-white shadow-md rounded-lg overflow-hidden flex flex-col md:flex-row">
                             <img src={course.image} alt={course.title} className="w-full md:w-1/3 h-64 md:h-72 object-cover p-5" />
                             <div className="p-8 flex-1">
                                 <h5 className="text-2xl font-semibold w-24 p-1 border border-purple-300 mb-3">{course.price}.00</h5>
