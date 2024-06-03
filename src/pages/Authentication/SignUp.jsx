@@ -37,6 +37,7 @@ const SignUp = () => {
                             name: data.name,
                             email: data.email,
                             phone: data.phone,
+                            photo: data.photo,
                             role: 'student',
                             status: 'Pending'
                         }
@@ -67,6 +68,7 @@ const SignUp = () => {
                 const userInfo = {
                     email: result.user?.email,
                     name: result.user?.displayName,
+                    photo: result.user?.photoURL,
                     role: 'student',
                     status: 'Pending'
                 }

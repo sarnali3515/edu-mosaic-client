@@ -6,9 +6,9 @@ import { FaRegUser } from "react-icons/fa";
 
 
 const Profile = () => {
-    const { user } = useAuth()
+    const { user, loading } = useAuth()
     const axiosSecure = useAxiosSecure()
-    const { data: users = [] } = useQuery({
+    const { data: users = [], isLoading } = useQuery({
         queryKey: ['user', user?.email],
         queryFn: async () => {
             const { data } = await axiosSecure.get(`/users/${user?.email}`)
@@ -16,6 +16,13 @@ const Profile = () => {
             return data;
         }
     })
+    if (loading || isLoading) {
+        return (
+            <div className="text-center my-4 md:my-6">
+                <span className="loading loading-lg loading-spinner text-success"></span>
+            </div>
+        );
+    }
 
     return (
         <div >
@@ -33,7 +40,7 @@ const Profile = () => {
                         <span className="font-semibold">  Phone:</span> {users.phone}</p>
                     <p className=" flex items-center justify-center gap-1 md:gap-2 text-lg  mb-2">
                         <FaRegUser></FaRegUser>
-                        <span className="font-semibold">  Role:</span> <span className="text-green-600">{users.role}</span></p>
+                        <span className="font-semibold">  Role:</span> <span className="text-green-600 uppercase">{users.role}</span></p>
 
                 </div>
             </div>

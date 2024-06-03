@@ -53,6 +53,7 @@ const Login = () => {
                 const userInfo = {
                     email: result.user?.email,
                     name: result.user?.displayName,
+                    photo: result.user?.photoURL,
                     role: 'student',
                     status: 'Pending'
                 }

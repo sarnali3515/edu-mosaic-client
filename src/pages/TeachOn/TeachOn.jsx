@@ -7,7 +7,7 @@ import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 
 const TeachOn = () => {
-    const { user } = useAuth();
+    const { user, loading } = useAuth();
     const axiosSecure = useAxiosSecure()
     const { register, handleSubmit, formState: { errors } } = useForm();
 
@@ -52,7 +52,6 @@ const TeachOn = () => {
         const category = data.category
         const status = users.status
 
-
         try {
             const teacherReqData = {
                 name, email, image, title, experience, category, status
@@ -64,6 +63,14 @@ const TeachOn = () => {
         } catch (err) {
             console.error(err)
         }
+    }
+
+    if (loading) {
+        return (
+            <div className="text-center my-4 md:my-6">
+                <span className="loading loading-lg loading-spinner text-success"></span>
+            </div>
+        );
     }
 
 

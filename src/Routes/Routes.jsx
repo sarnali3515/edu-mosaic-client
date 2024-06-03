@@ -14,6 +14,8 @@ import ClassDetails from "../pages/ClassDetails/ClassDetails";
 import Profile from "../pages/Dashboard/Profile/Profile";
 import AddClass from "../pages/Dashboard/Teacher/AddClass";
 import MyClasses from "../pages/Dashboard/Teacher/MyClasses";
+import AllUsers from "../pages/Dashboard/Admin/AllUsers";
+import TeacherReq from "../pages/Dashboard/Admin/TeacherReq";
 
 export const router = createBrowserRouter([
     {
@@ -54,6 +56,8 @@ export const router = createBrowserRouter([
                 index: true,
                 element: <Profile></Profile>
             },
+
+            // teacher
             {
                 path: 'add-class',
                 element: <AddClass></AddClass>
@@ -61,6 +65,16 @@ export const router = createBrowserRouter([
             {
                 path: 'my-classes',
                 element: <MyClasses></MyClasses>
+            },
+
+            // admin
+            {
+                path: 'all-users',
+                element: <AllUsers></AllUsers>
+            },
+            {
+                path: 'teacher-req',
+                element: <TeacherReq></TeacherReq>
             },
         ]
     }

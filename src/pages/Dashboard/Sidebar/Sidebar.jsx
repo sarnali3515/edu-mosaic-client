@@ -3,6 +3,8 @@ import { AiOutlineBars } from 'react-icons/ai'
 import { CgProfile } from "react-icons/cg";
 import { FaRegAddressCard } from "react-icons/fa";
 import { SiGoogleclassroom } from "react-icons/si";
+import { FaUsers } from "react-icons/fa6";
+import { LiaChalkboardTeacherSolid } from "react-icons/lia";
 import { NavLink } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import useRole from '../../../hooks/useRole';
@@ -71,14 +73,41 @@ const Sidebar = () => {
                             {/* my profile */}
                             <MenuItem label="My Profile" address='/dashboard' icon={CgProfile}></MenuItem>
 
+                            {/* teacher */}
+                            {
+                                role === 'teacher' &&
 
-                            {/* Add Class */}
-                            <MenuItem label="Add Class" address='add-class' icon={FaRegAddressCard}></MenuItem>
+                                <>
 
+                                    <MenuItem label="Add Class" address='add-class' icon={FaRegAddressCard}></MenuItem>
 
-                            {/* My Class */}
-                            <MenuItem label="My Classes" address='my-classes' icon={SiGoogleclassroom}></MenuItem>
+                                    <MenuItem label="My Classes" address='my-classes' icon={SiGoogleclassroom}></MenuItem></>
 
+                            }
+                            {/* Student */}
+                            {
+                                role === 'student' &&
+
+                                <>
+
+                                    <MenuItem label="Add Class" address='add-class' icon={FaRegAddressCard}></MenuItem>
+
+                                    <MenuItem label="My Classes" address='my-classes' icon={SiGoogleclassroom}></MenuItem></>
+
+                            }
+                            {/* Admin */}
+                            {
+                                role === 'admin' &&
+
+                                <>
+
+                                    <MenuItem label="Teacher Requests" address='teacher-req' icon={LiaChalkboardTeacherSolid}></MenuItem>
+
+                                    <MenuItem label="All Users" address='all-users' icon={FaUsers}></MenuItem>
+                                    <MenuItem label="All Classes" address='all-classes' icon={SiGoogleclassroom}></MenuItem>
+                                </>
+
+                            }
                         </nav>
                     </div>
                 </div>
