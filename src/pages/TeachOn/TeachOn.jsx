@@ -1,16 +1,70 @@
 import { Helmet } from 'react-helmet-async';
-import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
-import { AuthContext } from '../../providers/AuthProvider';
+import useAuth from '../../hooks/useAuth';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import Swal from 'sweetalert2';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 
 const TeachOn = () => {
-    const { user } = useContext(AuthContext);
+    const { user } = useAuth();
+    const axiosSecure = useAxiosSecure()
     const { register, handleSubmit, formState: { errors } } = useForm();
+
+    const { data: users = [] } = useQuery({
+        queryKey: ['user', user?.email],
+        queryFn: async () => {
+            const { data } = await axiosSecure.get(`/users/${user?.email}`)
+            console.log(data);
+            return data;
+        }
+    })
+    console.log(users.status);
+
+
+    const { mutateAsync } = useMutation({
+        mutationFn: async (teacherReqData) => {
+            const { data } = await axiosSecure.post(`/teacher-req`, teacherReqData);
+            return data;
+        },
+        onSuccess: (data) => {
+            console.log('Data Saved Successfully', data);
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Class Added Successfully!",
+                showConfirmButton: false,
+                timer: 1500
+            });
+        },
+        onError: () => {
+            // console.log(errors);
+        }
+    })
 
     const onSubmit = async (data) => {
         console.log(data);
-    };
+        const name = data.name
+        const email = user?.email
+        const image = data.image
+        const title = data.title
+        const experience = data.experience
+        const category = data.category
+        const status = users.status
+
+
+        try {
+            const teacherReqData = {
+                name, email, image, title, experience, category, status
+            }
+            console.table(teacherReqData);
+            // post
+            await mutateAsync(teacherReqData)
+
+        } catch (err) {
+            console.error(err)
+        }
+    }
 
 
     return (
@@ -25,7 +79,7 @@ const TeachOn = () => {
                         <form onSubmit={handleSubmit(onSubmit)}>
                             <div className="form-control">
                                 <label className="label">Name</label>
-                                <input
+                                <input defaultValue={user?.displayName}
                                     type="text"
                                     {...register('name', { required: true })}
                                     placeholder="Enter your name"
@@ -36,6 +90,7 @@ const TeachOn = () => {
                             <div className="form-control">
                                 <label className="label">Image</label>
                                 <input
+                                    defaultValue={user?.photoURL}
                                     type="text"
                                     {...register('image', { required: true })}
                                     placeholder="Enter image URL"

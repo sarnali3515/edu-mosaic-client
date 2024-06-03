@@ -5,10 +5,13 @@ import { FaRegAddressCard } from "react-icons/fa";
 import { SiGoogleclassroom } from "react-icons/si";
 import { NavLink } from 'react-router-dom'
 import { Link } from 'react-router-dom'
+import useRole from '../../../hooks/useRole';
+import MenuItem from './Menu/MenuItem';
 
 const Sidebar = () => {
     const [isActive, setActive] = useState(true)
-
+    const [role] = useRole();
+    console.log(role);
     // Sidebar Responsive Handler
     const handleToggle = () => {
         setActive(!isActive)
@@ -65,43 +68,17 @@ const Sidebar = () => {
 
                         {/*  Menu Items */}
                         <nav>
-                            {/* Statistics */}
-                            <NavLink
-                                to='/dashboard'
-                                end
-                                className={({ isActive }) =>
-                                    `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-purple-500   hover:text-purple-950 ${isActive ? 'bg-purple-400  text-purple-950' : 'text-purple-900'
-                                    }`
-                                }
-                            >
-                                <CgProfile className='w-5 h-5' />
+                            {/* my profile */}
+                            <MenuItem label="My Profile" address='/dashboard' icon={CgProfile}></MenuItem>
 
-                                <span className='mx-4 font-medium'>My Profile</span>
-                            </NavLink>
 
-                            {/* Add Room */}
-                            <NavLink
-                                to='add-class'
-                                className={({ isActive }) =>
-                                    `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-purple-500   hover:text-purple-950 ${isActive ? 'bg-purple-400  text-gray-700' : 'text-purple-900'
-                                    }`
-                                }
-                            >
-                                <FaRegAddressCard className='w-5 h-5' />
-                                <span className='mx-4 font-medium'>Add Class</span>
-                            </NavLink>
-                            {/* My Listing */}
-                            <NavLink
-                                to='my-classes'
-                                className={({ isActive }) =>
-                                    `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-purple-500   hover:text-purple-950 ${isActive ? 'bg-purple-400  text-gray-700' : 'text-purple-900'
-                                    }`
-                                }
-                            >
-                                <SiGoogleclassroom className='w-5 h-5' />
+                            {/* Add Class */}
+                            <MenuItem label="Add Class" address='add-class' icon={FaRegAddressCard}></MenuItem>
 
-                                <span className='mx-4 font-medium'>My Classes</span>
-                            </NavLink>
+
+                            {/* My Class */}
+                            <MenuItem label="My Classes" address='my-classes' icon={SiGoogleclassroom}></MenuItem>
+
                         </nav>
                     </div>
                 </div>

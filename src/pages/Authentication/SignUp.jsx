@@ -36,7 +36,9 @@ const SignUp = () => {
                         const userInfo = {
                             name: data.name,
                             email: data.email,
-                            phone: data.phone
+                            phone: data.phone,
+                            role: 'student',
+                            status: 'Pending'
                         }
 
                         axiosPublic.post('/users', userInfo)
@@ -64,7 +66,9 @@ const SignUp = () => {
                 console.log(result);
                 const userInfo = {
                     email: result.user?.email,
-                    name: result.user?.displayName
+                    name: result.user?.displayName,
+                    role: 'student',
+                    status: 'Pending'
                 }
 
                 axiosPublic.post('/users', userInfo)

@@ -18,8 +18,8 @@ const AddClass = () => {
             const { data } = await axiosSecure.post(`/courses`, classData);
             return data;
         },
-        onSuccess: () => {
-            console.log('Data Saved Successfully');
+        onSuccess: (data) => {
+            console.log('Data Saved Successfully', data);
             Swal.fire({
                 position: "top-end",
                 icon: "success",
