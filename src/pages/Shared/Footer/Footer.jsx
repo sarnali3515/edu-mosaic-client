@@ -7,7 +7,7 @@ const Footer = () => {
             <div className='max-w-screen-xl mx-auto '>
                 <footer className="footer py-10  text-white">
                     <aside>
-                        <Link to="/" className="btn btn-ghost mb-3 md:mb-5"><img className="h-8 lg:h-14" src="https://i.ibb.co/zNF0bYr/edum-main.png" alt="" /></Link>
+                        <Link to="/" className=" mb-3 md:mb-5"><img className="h-8 lg:h-14" src="https://i.ibb.co/zNF0bYr/edum-main.png" alt="" /></Link>
                         <p className="md:pl-5">Connecting learners and educators <br /> for a brighter future.</p>
                     </aside>
                     <nav>

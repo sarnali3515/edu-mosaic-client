@@ -1,15 +1,56 @@
 import { Helmet } from 'react-helmet-async';
 import { useForm } from 'react-hook-form';
 import useAuth from '../../../hooks/useAuth';
+import { useMutation } from "@tanstack/react-query";
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import Swal from 'sweetalert2';
 
 
 const AddClass = () => {
-    const { user } = useAuth()
+    const { user } = useAuth();
+    const axiosSecure = useAxiosSecure()
     const { register, handleSubmit, formState: { errors } } = useForm();
-    // const history = useHistory();
+
+    const { mutateAsync } = useMutation({
+        mutationFn: async (classData) => {
+            const { data } = await axiosSecure.post(`/courses`, classData);
+            return data;
+        },
+        onSuccess: () => {
+            console.log('Data Saved Successfully');
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Class Added Successfully!",
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
+    })
+
 
     const onSubmit = async (data) => {
         console.log(data);
+        const title = data.title
+        const price = data.price
+        const photo = data.photo
+        const description = data.description
+        const teacherName = user?.displayName
+        const teacherEmail = user?.email
+
+        try {
+            const classData = {
+                title, price, photo, description, teacherName, teacherEmail
+            }
+            console.table(classData);
+            // post
+            await mutateAsync(classData)
+
+        } catch (err) {
+            console.error(err)
+        }
+
+
     };
 
     return (
@@ -19,7 +60,7 @@ const AddClass = () => {
             </Helmet>
             <div className="bg-purple-200 rounded-lg shadow-lg p-8 md:m-5 w-full md:w-11/12">
                 <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">Add a New Class</h2>
-                <form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     <div className="form-control">
                         <label className="label text-gray-700">Title</label>
                         <input
@@ -72,7 +113,7 @@ const AddClass = () => {
                         <label className="label text-gray-700">Image</label>
                         <input
                             type="text"
-                            {...register('image', { required: true })}
+                            {...register('photo', { required: true })}
                             placeholder="Enter image URL"
                             className="input input-bordered w-full rounded-md border-gray-300"
                         />

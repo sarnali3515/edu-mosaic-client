@@ -50,7 +50,7 @@ const Navbar = () => {
                             {navLinks}
                         </ul>
                     </div>
-                    <Link to="/" className="btn btn-ghost ml-0 pl-0 "><img className="h-6  lg:h-12" src="https://i.ibb.co/zNF0bYr/edum-main.png" alt="" /></Link>
+                    <Link to="/" className=" ml-0 pl-0 "><img className="h-6  lg:h-12" src="https://i.ibb.co/zNF0bYr/edum-main.png" alt="" /></Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
