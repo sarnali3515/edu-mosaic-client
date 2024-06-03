@@ -14,7 +14,6 @@ const SignUp = () => {
     const location = useLocation()
     const axiosPublic = useAxiosPublic();
 
-
     const {
         register,
         handleSubmit,

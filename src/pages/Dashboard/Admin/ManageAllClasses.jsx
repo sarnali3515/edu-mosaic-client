@@ -14,10 +14,11 @@ const ManageAllClasses = () => {
     })
     return (
         <div>
-            <div className="overflow-x-auto">
+            <h2 className="text-3xl text-center font-bold mb-5">Manage All Classes</h2>
+            <div className="overflow-x-auto shadow-md">
                 <table className="table">
                     {/* head */}
-                    <thead>
+                    <thead className="bg-purple-300">
                         <tr>
                             <th>
 
@@ -28,7 +29,7 @@ const ManageAllClasses = () => {
                             <th>Teacher Email</th>
                             <th>Description</th>
                             <th></th>
-                            <th></th>
+                            <th>Action</th>
                             <th></th>
                         </tr>
                     </thead>

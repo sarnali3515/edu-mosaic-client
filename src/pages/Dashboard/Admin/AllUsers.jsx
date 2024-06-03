@@ -26,7 +26,7 @@ const AllUsers = () => {
     return (
         <div>
             <div>
-                <h2 className="text-3xl text-center font-bold mb-5">All Users</h2>
+                <h2 className="text-3xl text-center font-bold mb-5">Manage All Users</h2>
                 <div className="flex justify-center mb-4">
                     <input
                         type="text"

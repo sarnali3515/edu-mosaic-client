@@ -17,6 +17,7 @@ import MyClasses from "../pages/Dashboard/Teacher/MyClasses";
 import AllUsers from "../pages/Dashboard/Admin/AllUsers";
 import TeacherReq from "../pages/Dashboard/Admin/TeacherReq";
 import ManageAllClasses from "../pages/Dashboard/Admin/ManageAllClasses";
+import MyEnrolledClass from "../pages/Dashboard/Student/MyEnrolledClass";
 
 export const router = createBrowserRouter([
     {
@@ -80,6 +81,10 @@ export const router = createBrowserRouter([
             {
                 path: 'all-classes',
                 element: <ManageAllClasses></ManageAllClasses>
+            },
+            {
+                path: 'enroll-class',
+                element: <MyEnrolledClass></MyEnrolledClass>
             },
         ]
     }

@@ -89,10 +89,8 @@ const Sidebar = () => {
                                 role === 'student' &&
 
                                 <>
-
-                                    <MenuItem label="Add Class" address='add-class' icon={FaRegAddressCard}></MenuItem>
-
-                                    <MenuItem label="My Classes" address='my-classes' icon={SiGoogleclassroom}></MenuItem></>
+                                    <MenuItem label="My Enrolled Class" address='enroll-class' icon={FaRegAddressCard}></MenuItem>
+                                </>
 
                             }
                             {/* Admin */}
