@@ -16,6 +16,7 @@ import AddClass from "../pages/Dashboard/Teacher/AddClass";
 import MyClasses from "../pages/Dashboard/Teacher/MyClasses";
 import AllUsers from "../pages/Dashboard/Admin/AllUsers";
 import TeacherReq from "../pages/Dashboard/Admin/TeacherReq";
+import ManageAllClasses from "../pages/Dashboard/Admin/ManageAllClasses";
 
 export const router = createBrowserRouter([
     {
@@ -75,6 +76,10 @@ export const router = createBrowserRouter([
             {
                 path: 'teacher-req',
                 element: <TeacherReq></TeacherReq>
+            },
+            {
+                path: 'all-classes',
+                element: <ManageAllClasses></ManageAllClasses>
             },
         ]
     }
