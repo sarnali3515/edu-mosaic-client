@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 
+
 const ManageAllClasses = () => {
     const axiosSecure = useAxiosSecure();
     const { data: classes = [], isLoading, refetch } = useQuery({
@@ -12,6 +13,9 @@ const ManageAllClasses = () => {
             return data
         }
     })
+
+
+
     return (
         <div>
             <h2 className="text-3xl text-center font-bold mb-5">Manage All Classes</h2>

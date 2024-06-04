@@ -32,6 +32,9 @@ const AllClasses = () => {
         setCurrentPage(pageNumber);
     };
 
+
+
+
     if (isLoading) {
         return <div className="text-center my-10 md:my-20">
             <span className="loading loading-lg loading-spinner text-success"></span>

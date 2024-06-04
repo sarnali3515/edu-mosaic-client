@@ -1,11 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 
 const TeacherReq = () => {
     const axiosSecure = useAxiosSecure();
 
-    const { data: requests = [], isLoading } = useQuery({
+    const { data: requests = [], isLoading, refetch } = useQuery({
         queryKey: ['requests'],
         queryFn: async () => {
             const { data } = await axiosSecure('/teacher-req')
@@ -13,6 +14,42 @@ const TeacherReq = () => {
             return data
         }
     })
+
+    const handleApproveTeacher = request => {
+        axiosSecure.patch(`/teacher-req/approve/${request._id}`)
+            .then(res => {
+                console.log(res.data);
+                refetch();
+                if (res.data.modifiedCount > 0) {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: `This user is Teacher now!`,
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
+
+            })
+    }
+    const handleRejectTeacher = request => {
+        axiosSecure.patch(`/teacher-req/reject/${request._id}`)
+            .then(res => {
+                console.log(res.data);
+                refetch();
+                if (res.data.modifiedCount > 0) {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: `Rejected Teacher`,
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
+
+            })
+    }
+
     return (
         <div>
             <h2 className="text-3xl text-center font-bold mb-5">Teacher Requests</h2>
@@ -60,9 +97,9 @@ const TeacherReq = () => {
                                 <td>{request.experience}</td>
                                 <td className="text-yellow-600">{request.status}</td>
                                 <th className="grid gap-1">
-                                    <button className="btn btn-xs bg-transparent text-green-600">Approve</button>
+                                    <button onClick={() => handleApproveTeacher(request)} className="btn btn-xs bg-transparent text-green-600">Approve</button>
 
-                                    <button className="btn btn-xs bg-transparent text-red-600">Reject</button>
+                                    <button onClick={() => handleRejectTeacher(request)} className="btn btn-xs bg-transparent text-red-600">Reject</button>
                                 </th>
                             </tr>
                         ))}

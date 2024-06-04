@@ -19,7 +19,6 @@ const AllUsers = () => {
     })
 
     const handleMakeAdmin = user => {
-
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to undo this!",
