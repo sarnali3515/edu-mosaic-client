@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 
 
@@ -14,7 +15,40 @@ const ManageAllClasses = () => {
         }
     })
 
+    const handleApproveClass = course => {
+        axiosSecure.patch(`/courses/approve/${course._id}`)
+            .then(res => {
+                console.log(res.data);
+                refetch();
+                if (res.data.modifiedCount > 0) {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: `The class is approved!`,
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
 
+            })
+    }
+    const handleRejectClass = course => {
+        axiosSecure.patch(`/courses/reject/${course._id}`)
+            .then(res => {
+                console.log(res.data);
+                refetch();
+                if (res.data.modifiedCount > 0) {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: `Rejected Class`,
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
+
+            })
+    }
 
     return (
         <div>
@@ -54,7 +88,7 @@ const ManageAllClasses = () => {
                                     <div className="flex items-center gap-3">
                                         <div className="avatar">
                                             <div className="mask  w-14 h-12">
-                                                <img src={course.image} alt="Avatar Tailwind CSS Component" />
+                                                <img src={course.photo} alt="Avatar Tailwind CSS Component" />
                                             </div>
                                         </div>
 
@@ -67,12 +101,24 @@ const ManageAllClasses = () => {
                                     {course.description}
                                 </td>
                                 <th className="">
-                                    <button className="btn btn-xs bg-transparent text-green-600">Approve</button>
+                                    {
+                                        course.status === 'Approved' ?
+                                            <button onClick={() => handleApproveClass(course)} className="btn btn-xs bg-transparent text-green-600">Approved</button>
+                                            :
+                                            <button onClick={() => handleApproveClass(course)} className="btn btn-xs bg-transparent text-green-600">Approve</button>
+                                    }
 
 
 
                                 </th>
-                                <th><button className="btn btn-xs bg-transparent text-red-600">Reject</button></th>
+                                <th>
+                                    {
+                                        course.status === 'Rejected' ?
+                                            <button onClick={() => handleRejectClass(course)} className="btn btn-xs bg-transparent text-red-600">Rejected</button>
+                                            :
+                                            <button onClick={() => handleRejectClass(course)} className="btn btn-xs bg-transparent text-red-600">Reject</button>
+                                    }
+                                </th>
                                 <th>
                                     <button className="btn btn-xs w-24 bg-transparent text-blue-600">See Progress</button>
                                 </th>

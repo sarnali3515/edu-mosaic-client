@@ -72,6 +72,9 @@ const MyClasses = () => {
     return (
         <div>
             <h2 className="text-3xl text-center font-bold mb-5">My Classes</h2>
+            {
+                courses.length === 0 && <p className="text-center text-lg">You did not added any class</p>
+            }
             <div className="space-y-8">
                 {courses.map((course) => (
                     <div key={course._id} className="bg-white shadow-xl rounded-lg overflow-hidden flex flex-col md:flex-row">

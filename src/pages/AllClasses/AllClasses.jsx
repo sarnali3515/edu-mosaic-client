@@ -51,11 +51,11 @@ const AllClasses = () => {
                 <div className="space-y-8">
                     {currentCourses.map((course) => (
                         <div key={course._id} className="bg-white shadow-md rounded-lg overflow-hidden flex flex-col md:flex-row">
-                            <img src={course.image} alt={course.title} className="w-full md:w-1/3 h-64 md:h-72 object-cover p-5" />
+                            <img src={course.photo} alt={course.title} className="w-full md:w-1/3 h-64 md:h-72 object-cover p-5" />
                             <div className="p-8 flex-1">
                                 <h5 className="text-2xl font-semibold w-24 p-1 border border-purple-300 mb-3">{course.price}.00</h5>
                                 <h2 className="text-2xl md:text-3xl font-bold">{course.title}</h2>
-                                <p className="border-b-2 border-dashed pb-2 border-purple-400">By {course.instructor}</p>
+                                <p className="border-b-2 border-dashed pb-2 border-purple-400">Instructed by - {course.teacherName}</p>
                                 <p className="my-2">{course.description}</p>
                                 <p>Total Enrollment: {course.totalEnrollment}</p>
                                 <Link to={`${course._id}`}><button className="btn bg-purple-500 text-white px-5 mt-3">Enroll Now</button></Link>

@@ -1,18 +1,72 @@
 [
     {
         "title": "React for Beginners",
-        "instructor": "John Doe",
-        "image": "https://i.ibb.co/DrgV42C/teach-online-2-1.jpg",
-        "price": "$50",
+        "teacherName": "John Doe",
+        "teacherEmail": "john@gmail.com",
+        "photo": "https://i.ibb.co/DrgV42C/teach-online-2-1.jpg",
+        "price": 50,
         "description": "Learn the basics of React in this comprehensive course.",
-        "totalEnrollment": 120
+        "totalEnrollment": 0,
+        "status": "Pending"
     },
     {
-        "title": "Advanced CSS Techniques",
-        "instructor": "Jane Smith",
-        "image": "https://i.ibb.co/DrgV42C/teach-online-2-1.jpg",
-        "price": "$75",
-        "description": "Master advanced CSS techniques to build stunning websites.",
-        "totalEnrollment": 85
+        "title": "Machine Learning for Beginners",
+        "teacherName": "Emily Garcia",
+        "teacherEmail": "emily@gmail.com",
+        "photo": "https://i.ibb.co/DrgV42C/teach-online-2-1.jpg",
+        "price": 100,
+        "description": "Get introduced to the fundamental concepts of machine learning.",
+        "totalEnrollment": 0,
+        "status": "Pending"
+    },
+    {
+        "title": "SEO Fundamentals for Beginners",
+        "teacherName": "David Lee",
+        "teacherEmail": "david@gmail.com",
+        "photo": "https://i.ibb.co/DrgV42C/teach-online-2-1.jpg",
+        "price": 40,
+        "description": "Learn the basics of Search Engine Optimization (SEO) to improve your website's ranking.",
+        "totalEnrollment": 0,
+        "status": "Pending"
+    },
+    {
+        "title": "Social Media Marketing Strategies",
+        "teacherName": "Sarah Jones",
+        "teacherEmail": "sarah@gmail.com",
+        "photo": "https://i.ibb.co/DrgV42C/teach-online-2-1.jpg",
+        "price": 60,
+        "description": "Discover effective social media marketing strategies to reach your target audience.",
+        "totalEnrollment": 0,
+        "status": "Pending"
+    },
+    {
+        "title": "Advanced JavaScript Techniques",
+        "teacherName": "Jane Smith",
+        "teacherEmail": "jane@gmail.com",
+        "photo": "https://i.ibb.co/DrgV42C/teach-online-2-1.jpg",
+        "price": 75,
+        "description": "Master advanced JavaScript concepts to create dynamic web applications.",
+        "totalEnrollment": 0,
+        "status": "Pending"
+    },
+    {
+        "title": "Adobe Photoshop Essentials",
+        "teacherName": "Amanda Miller",
+        "teacherEmail": "amanda@gmail.com",
+        "photo": "https://i.ibb.co/DrgV42C/teach-online-2-1.jpg",
+        "price": 65,
+        "description": "Master the basics of photo editing and image manipulation using Adobe Photoshop.",
+        "totalEnrollment": 0,
+        "status": "Pending"
+    },
+    {
+        "title": "Introduction to Data Analysis with Python",
+        "teacherName": "Michael Brown",
+        "teacherEmail": "michael@gmail.com",
+        "photo": "https://i.ibb.co/DrgV42C/teach-online-2-1.jpg",
+        "price": 80,
+        "description": "Learn the basics of data analysis using Python libraries like pandas and NumPy.",
+        "totalEnrollment": 0,
+        "status": "Pending"
     }
 ]

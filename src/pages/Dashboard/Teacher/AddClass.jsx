@@ -44,10 +44,12 @@ const AddClass = () => {
         const description = data.description
         const teacherName = user?.displayName
         const teacherEmail = user?.email
+        const totalEnrollment = 0
+        const status = 'Pending'
 
         try {
             const classData = {
-                title, price, photo, description, teacherName, teacherEmail
+                title, price, photo, description, teacherName, teacherEmail, status, totalEnrollment
             }
             console.table(classData);
             // post
