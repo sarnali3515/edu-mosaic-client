@@ -19,11 +19,13 @@ import TeacherReq from "../pages/Dashboard/Admin/TeacherReq";
 import ManageAllClasses from "../pages/Dashboard/Admin/ManageAllClasses";
 import MyEnrolledClass from "../pages/Dashboard/Student/MyEnrolledClass";
 import Payment from "../pages/Dashboard/Payment/Payment";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
 
 export const router = createBrowserRouter([
     {
         path: "/",
         element: <Main></Main>,
+        errorElement: <ErrorPage></ErrorPage>,
         children: [
             {
                 path: '/',
@@ -53,7 +55,8 @@ export const router = createBrowserRouter([
     },
     {
         path: 'dashboard',
-        element: <Dashboard></Dashboard>,
+        element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
+        errorElement: <ErrorPage></ErrorPage>,
         children: [
             {
                 index: true,
