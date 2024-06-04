@@ -9,6 +9,7 @@ const auth = getAuth(app);
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [coursePayment, setCoursePayment] = useState({})
     const googleProvider = new GoogleAuthProvider();
     const axiosPublic = useAxiosPublic();
 
@@ -69,7 +70,9 @@ const AuthProvider = ({ children }) => {
         signIn,
         googleSignIn,
         logOut,
-        updateUserProfile
+        updateUserProfile,
+        coursePayment,
+        setCoursePayment
 
     }
     return (

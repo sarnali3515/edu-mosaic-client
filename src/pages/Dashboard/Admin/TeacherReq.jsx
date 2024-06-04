@@ -10,7 +10,7 @@ const TeacherReq = () => {
         queryKey: ['requests'],
         queryFn: async () => {
             const { data } = await axiosSecure('/teacher-req')
-            console.log(data);
+            // console.log(data);
             return data
         }
     })
@@ -18,7 +18,7 @@ const TeacherReq = () => {
     const handleApproveTeacher = request => {
         axiosSecure.patch(`/teacher-req/approve/${request._id}`)
             .then(res => {
-                console.log(res.data);
+                // console.log(res.data);
                 refetch();
                 if (res.data.modifiedCount > 0) {
                     Swal.fire({
@@ -35,7 +35,7 @@ const TeacherReq = () => {
     const handleRejectTeacher = request => {
         axiosSecure.patch(`/teacher-req/reject/${request._id}`)
             .then(res => {
-                console.log(res.data);
+                console.log(res);
                 refetch();
                 if (res.data.modifiedCount > 0) {
                     Swal.fire({
