@@ -95,11 +95,24 @@ const TeacherReq = () => {
                                 </td>
                                 <td>{request.category}</td>
                                 <td>{request.experience}</td>
-                                <td className="text-yellow-600">{request.status}</td>
+                                <td className={request.status === 'Approved' ? 'text-green-600' : request.status === 'Rejected' ? 'text-red-600' : 'text-yellow-600'} >
+                                    {request.status}
+                                </td>
                                 <th className="grid gap-1">
-                                    <button onClick={() => handleApproveTeacher(request)} className="btn btn-xs bg-transparent text-green-600">Approve</button>
+                                    {
+                                        request.status !== 'Pending' ?
+                                            <>
+                                                <button disabled className="btn btn-xs bg-transparent text-green-600">Approve</button>
 
-                                    <button onClick={() => handleRejectTeacher(request)} className="btn btn-xs bg-transparent text-red-600">Reject</button>
+                                                <button disabled className="btn btn-xs bg-transparent text-red-600">Reject</button>
+                                            </>
+                                            :
+                                            <>
+                                                <button onClick={() => handleApproveTeacher(request)} className="btn btn-xs bg-transparent text-green-600">Approve</button>
+
+                                                <button onClick={() => handleRejectTeacher(request)} className="btn btn-xs bg-transparent text-red-600">Reject</button>
+                                            </>
+                                    }
                                 </th>
                             </tr>
                         ))}

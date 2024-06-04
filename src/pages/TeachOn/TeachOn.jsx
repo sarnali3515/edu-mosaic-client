@@ -24,6 +24,7 @@ const TeachOn = () => {
             return data;
         },
         onSuccess: (data) => {
+            console.log(data);
             Swal.fire({
                 position: "top-end",
                 icon: "success",
@@ -50,7 +51,7 @@ const TeachOn = () => {
         const title = data.title;
         const experience = data.experience;
         const category = data.category;
-        const status = userData.status;
+        const status = 'Pending';
 
         try {
             const teacherReqData = {

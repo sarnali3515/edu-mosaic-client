@@ -82,13 +82,13 @@ const MyClasses = () => {
                         <div className="p-8 flex-1">
                             <div className="flex gap-5">
                                 <h5 className="text-xl font-semibold w-20 p-1 border border-purple-300 mb-3">${course.price}.00</h5>
-                                <h5 className="text-lg font-semibold  p-1 border border-purple-300 mb-3"><span className="font-bold">Status:</span> <span className="text-yellow-600">Pending</span></h5>
+                                <h5 className="text-lg font-semibold  p-1 border border-purple-300 mb-3"><span className="font-bold">Status:</span> <span className={course.status === 'Approved' ? 'text-green-600' : course.status === 'Rejected' ? 'text-red-600' : 'text-yellow-600'}>{course.status}</span></h5>
                             </div>
                             <h2 className="text-2xl md:text-2xl font-semibold">{course.title}</h2>
                             <p className="border-b-2 border-dashed pb-2 border-purple-400">By {course.teacherName}</p>
                             <p className="my-2">{course.description}</p>
                             <div className="flex flex-col md:flex-row md:gap-5">
-                                <Link><button className="btn btn-success btn-outline px-5 mt-3"><CiCircleMore /> See Details</button></Link>
+                                <Link><button disabled={course.status === 'Pending' || course.status === 'Rejected'} className="btn btn-success btn-outline px-5 mt-3"><CiCircleMore /> See Details</button></Link>
                                 <Link><button className="btn btn-info btn-outline px-5 mt-3"><MdOutlineEdit /> Update</button></Link>
                                 <button
                                     onClick={() => {

@@ -100,27 +100,52 @@ const ManageAllClasses = () => {
                                 <td>
                                     {course.description}
                                 </td>
-                                <th className="">
-                                    {
-                                        course.status === 'Approved' ?
-                                            <button onClick={() => handleApproveClass(course)} className="btn btn-xs bg-transparent text-green-600">Approved</button>
-                                            :
-                                            <button onClick={() => handleApproveClass(course)} className="btn btn-xs bg-transparent text-green-600">Approve</button>
-                                    }
+                                {
+                                    course.status !== 'Pending' ?
+                                        <> <th className="">
+                                            {
+                                                course.status === 'Approved' ?
+                                                    <button disabled className="btn btn-xs bg-transparent text-green-600">Approved</button>
+                                                    :
+                                                    <button disabled className="btn btn-xs bg-transparent text-green-600">Approve</button>
+                                            }
 
 
 
-                                </th>
+                                        </th>
+                                            <th>
+                                                {
+                                                    course.status === 'Rejected' ?
+                                                        <button disabled className="btn btn-xs bg-transparent text-red-600">Rejected</button>
+                                                        :
+                                                        <button disabled className="btn btn-xs bg-transparent text-red-600">Reject</button>
+                                                }
+                                            </th></>
+                                        :
+                                        <>
+                                            <th className="">
+                                                {
+                                                    course.status === 'Approved' ?
+                                                        <button onClick={() => handleApproveClass(course)} className="btn btn-xs bg-transparent text-green-600">Approved</button>
+                                                        :
+                                                        <button onClick={() => handleApproveClass(course)} className="btn btn-xs bg-transparent text-green-600">Approve</button>
+                                                }
+
+
+
+                                            </th>
+                                            <th>
+                                                {
+                                                    course.status === 'Rejected' ?
+                                                        <button onClick={() => handleRejectClass(course)} className="btn btn-xs bg-transparent text-red-600">Rejected</button>
+                                                        :
+                                                        <button onClick={() => handleRejectClass(course)} className="btn btn-xs bg-transparent text-red-600">Reject</button>
+                                                }
+                                            </th>
+                                        </>
+                                }
                                 <th>
-                                    {
-                                        course.status === 'Rejected' ?
-                                            <button onClick={() => handleRejectClass(course)} className="btn btn-xs bg-transparent text-red-600">Rejected</button>
-                                            :
-                                            <button onClick={() => handleRejectClass(course)} className="btn btn-xs bg-transparent text-red-600">Reject</button>
-                                    }
-                                </th>
-                                <th>
-                                    <button className="btn btn-xs w-24 bg-transparent text-blue-600">See Progress</button>
+                                    <button disabled={course.status === 'Pending' || course.status === 'Rejected'} className="btn btn-xs w-24 bg-transparent text-blue-600">See Progress</button>
                                 </th>
                             </tr>
                         ))}

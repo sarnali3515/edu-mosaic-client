@@ -9,6 +9,7 @@ const AllUsers = () => {
     const axiosSecure = useAxiosSecure();
     const axiosPublic = useAxiosPublic();
 
+
     const { data: users, isLoading, refetch } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
@@ -48,8 +49,6 @@ const AllUsers = () => {
         });
 
     }
-
-
 
     if (isLoading) {
         return (
