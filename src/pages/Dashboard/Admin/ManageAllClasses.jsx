@@ -4,7 +4,7 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const ManageAllClasses = () => {
     const axiosSecure = useAxiosSecure();
-    const { data: classes = [], isLoading } = useQuery({
+    const { data: classes = [], isLoading, refetch } = useQuery({
         queryKey: ['classes'],
         queryFn: async () => {
             const { data } = await axiosSecure('/courses')

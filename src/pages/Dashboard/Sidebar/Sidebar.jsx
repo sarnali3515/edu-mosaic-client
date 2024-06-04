@@ -13,7 +13,7 @@ import MenuItem from './Menu/MenuItem';
 const Sidebar = () => {
     const [isActive, setActive] = useState(true)
     const [role] = useRole();
-    console.log(role);
+    // console.log(role);
     // Sidebar Responsive Handler
     const handleToggle = () => {
         setActive(!isActive)
