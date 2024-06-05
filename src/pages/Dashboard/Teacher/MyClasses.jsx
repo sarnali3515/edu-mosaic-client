@@ -89,9 +89,11 @@ const MyClasses = () => {
                             <p className="border-b-2 border-dashed pb-2 border-purple-400">By {course.teacherName}</p>
                             <p className="my-2">{course.description}</p>
                             <div className="flex flex-col md:flex-row md:gap-5">
-                                <Link><button disabled={course.status === 'Pending' || course.status === 'Rejected'} className="btn btn-success btn-outline px-5 mt-3"><CiCircleMore /> See Details</button></Link>
-
+                                {/* see details */}
+                                <Link to={`/dashboard/teacher-class-details/${course._id}`}><button disabled={course.status === 'Pending' || course.status === 'Rejected'} className="btn btn-success btn-outline px-5 mt-3"><CiCircleMore /> See Details</button></Link>
+                                {/* update */}
                                 <Link to={`/dashboard/my-classes/${course._id}`}><button className="btn btn-info btn-outline px-5 mt-3"><MdOutlineEdit /> Update</button></Link>
+                                {/* delete */}
                                 <button
                                     onClick={() => {
                                         setIsOpen(true);
