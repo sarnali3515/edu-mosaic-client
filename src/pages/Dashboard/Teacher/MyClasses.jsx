@@ -14,6 +14,7 @@ const MyClasses = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedId, setSelectedId] = useState(null);
 
+
     const closeModal = () => {
         setIsOpen(false);
     };
@@ -89,7 +90,8 @@ const MyClasses = () => {
                             <p className="my-2">{course.description}</p>
                             <div className="flex flex-col md:flex-row md:gap-5">
                                 <Link><button disabled={course.status === 'Pending' || course.status === 'Rejected'} className="btn btn-success btn-outline px-5 mt-3"><CiCircleMore /> See Details</button></Link>
-                                <Link><button className="btn btn-info btn-outline px-5 mt-3"><MdOutlineEdit /> Update</button></Link>
+
+                                <Link to={`/dashboard/my-classes/${course._id}`}><button className="btn btn-info btn-outline px-5 mt-3"><MdOutlineEdit /> Update</button></Link>
                                 <button
                                     onClick={() => {
                                         setIsOpen(true);

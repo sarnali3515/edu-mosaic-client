@@ -20,6 +20,7 @@ import ManageAllClasses from "../pages/Dashboard/Admin/ManageAllClasses";
 import MyEnrolledClass from "../pages/Dashboard/Student/MyEnrolledClass";
 import Payment from "../pages/Dashboard/Payment/Payment";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
+import UpdateClass from "../pages/Dashboard/Teacher/UpdateClass";
 
 export const router = createBrowserRouter([
     {
@@ -72,6 +73,10 @@ export const router = createBrowserRouter([
                 path: 'my-classes',
                 element: <MyClasses></MyClasses>
             },
+            {
+                path: 'my-classes/:id',
+                element: <UpdateClass></UpdateClass>
+            },
 
             // admin
             {
@@ -86,15 +91,16 @@ export const router = createBrowserRouter([
                 path: 'all-classes',
                 element: <ManageAllClasses></ManageAllClasses>
             },
-            {
-                path: 'enroll-class',
-                element: <MyEnrolledClass></MyEnrolledClass>
-            },
+
             // student
             {
                 path: 'payment',
                 element: <Payment></Payment>
-            }
+            },
+            {
+                path: 'enroll-class',
+                element: <MyEnrolledClass></MyEnrolledClass>
+            },
         ]
     }
 ]);
