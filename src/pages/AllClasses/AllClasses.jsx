@@ -2,9 +2,13 @@ import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import useCourses from '../../hooks/useCourses';
 import { Link } from 'react-router-dom';
+// import { useQuery } from "@tanstack/react-query";
+// import useAxiosSecure from "../../hooks/useAxiosSecure";
+
 
 const AllClasses = () => {
     const [courses, isLoading] = useCourses();
+    // const axiosSecure = useAxiosSecure();
     console.log(courses);
 
     // Filter the courses to show only those with status 'Approved'
@@ -34,6 +38,21 @@ const AllClasses = () => {
     const handlePageClick = (pageNumber) => {
         setCurrentPage(pageNumber);
     };
+
+    // const { data: classEnrollments } = useQuery({
+    //     queryKey: ['class-enrollments', id],
+    //     queryFn: async () => {
+    //         const { data } = await axiosSecure.get(`/enrollments/${id}`);
+    //         console.log(data);
+    //         return data;
+    //     }
+    // });
+    // const fetchEnrollments = async (id) => {
+    //     const { data } = await axiosSecure.get(`/enrollments/${id}`);
+    //     return data;
+    // };
+
+    // const totalEnrollment = classEnrollments?.length
 
     if (isLoading) {
         return <div className="text-center my-10 md:my-20">

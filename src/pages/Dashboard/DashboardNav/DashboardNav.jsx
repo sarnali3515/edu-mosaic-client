@@ -26,7 +26,7 @@ const DashboardNav = () => {
         <div className="navbar bg-purple-200">
 
             <div className="navbar-start md:ml-5">
-                <h2 className="text-lg md:text-2xl font-bold uppercase">{role} Dashboard</h2>
+                <h2 className="text-lg md:text-xl font-bold uppercase">{role} Dashboard</h2>
             </div>
             <div className="navbar-end md:mr-8">
                 <div className="mr-3">
