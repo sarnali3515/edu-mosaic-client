@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAuth from "../../../hooks/useAuth";
+import { Link } from "react-router-dom";
 
 
 const MyEnrolledClass = () => {
@@ -30,7 +31,7 @@ const MyEnrolledClass = () => {
                                 <h2 className="card-title">{enrollClass.title}</h2>
                                 <p className="text-sm">Instructed by <span className="font-semibold">{enrollClass.teacherName}</span></p>
                                 <div className="card-actions justify-end">
-                                    <button className="btn bg-purple-600 text-white btn-sm">Continue</button>
+                                    <Link to={`/dashboard/enroll-class/${enrollClass._id}`}><button className="btn bg-purple-600 text-white btn-sm">Continue</button></Link>
                                 </div>
                             </div>
                         </div>

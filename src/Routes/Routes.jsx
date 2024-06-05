@@ -22,6 +22,7 @@ import Payment from "../pages/Dashboard/Payment/Payment";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import UpdateClass from "../pages/Dashboard/Teacher/UpdateClass";
 import TeacherClassDetails from "../pages/Dashboard/Teacher/TeacherClassDetails";
+import StudentClassDetails from "../pages/Dashboard/Student/StudentClassDetails";
 
 export const router = createBrowserRouter([
     {
@@ -105,6 +106,10 @@ export const router = createBrowserRouter([
             {
                 path: 'enroll-class',
                 element: <MyEnrolledClass></MyEnrolledClass>
+            },
+            {
+                path: 'enroll-class/:id',
+                element: <StudentClassDetails></StudentClassDetails>
             },
         ]
     }
