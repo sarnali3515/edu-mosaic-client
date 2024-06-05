@@ -13,7 +13,6 @@ const TeacherClassDetails = () => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const { id } = useParams();
     const axiosSecure = useAxiosSecure();
-    const navigate = useNavigate()
 
     const { mutateAsync } = useMutation({
         mutationFn: async (assignmentData) => {
@@ -29,7 +28,6 @@ const TeacherClassDetails = () => {
                 showConfirmButton: false,
                 timer: 1500
             });
-            navigate('/dashboard/my-classes')
 
         },
         onError: () => {
@@ -41,10 +39,31 @@ const TeacherClassDetails = () => {
         queryKey: ['class-details', id],
         queryFn: async () => {
             const { data } = await axiosSecure.get(`/course/${id}`);
-            // console.log(data);
+            console.log(data);
             return data;
         }
     });
+
+    const { data: classAssignments } = useQuery({
+        queryKey: ['class-assignments', id],
+        queryFn: async () => {
+            const { data } = await axiosSecure.get(`/assignments/${id}`);
+            console.log(data);
+            return data;
+        }
+    });
+    const { data: classEnrollments } = useQuery({
+        queryKey: ['class-enrollments', id],
+        queryFn: async () => {
+            const { data } = await axiosSecure.get(`/enrollments/${id}`);
+            console.log(data);
+            return data;
+        }
+    });
+
+    const totalAssignment = classAssignments?.length
+    const totalEnrollment = classEnrollments?.length
+
 
     const handleCreateClick = () => {
         setIsModalOpen(true);
@@ -93,21 +112,21 @@ const TeacherClassDetails = () => {
                     <div className='flex items-center justify-center'>
                         <img className='w-10' src={img1} alt="" />
                     </div>
-                    <h2 className="text-4xl font-bold text-center">50</h2>
+                    <h2 className="text-4xl font-bold text-center">{totalEnrollment}</h2>
                     <h2 className="text-xl font-semibold text-center">Total Enrollment</h2>
                 </div>
                 <div className="w-full border bg-white rounded-lg py-6">
                     <div className='flex items-center justify-center'>
                         <img className='w-10' src={img2} alt="" />
                     </div>
-                    <h2 className="text-4xl font-bold text-center">6</h2>
+                    <h2 className="text-4xl font-bold text-center">{totalAssignment}</h2>
                     <h2 className="text-xl font-semibold text-center">Total Assignment</h2>
                 </div>
                 <div className="w-full border bg-white rounded-lg py-6">
                     <div className='flex items-center justify-center'>
                         <img className='w-10' src={img3} alt="" />
                     </div>
-                    <h2 className="text-4xl font-bold text-center">10</h2>
+                    <h2 className="text-4xl font-bold text-center">0</h2>
                     <h2 className="text-xl font-semibold text-center">Per Day Submission</h2>
                 </div>
             </div>

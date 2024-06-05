@@ -102,9 +102,10 @@ const CheckoutForm = () => {
                         teacherName: coursePayment.teacherName,
                         photo: coursePayment.photo,
                         price: coursePayment.price,
+                        classId: coursePayment._id,
                         transactionId: paymentIntent.id,
                         date: new Date(),
-                        status: 'pending'
+                        status: 'Pending'
                     }
                     console.table(payment);
                     // post
