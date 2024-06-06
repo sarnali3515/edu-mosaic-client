@@ -3,11 +3,10 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { Link, useParams } from "react-router-dom";
 import { Helmet } from 'react-helmet-async';
 import useAuth from "../../hooks/useAuth";
-import { useEffect } from "react";
 
 
 const ClassDetails = () => {
-    const { coursePayment, setCoursePayment } = useAuth();
+    const { setCoursePayment } = useAuth();
     const { id } = useParams()
     const axiosPublic = useAxiosSecure();
     const { data: course = {}, isLoading } = useQuery({
@@ -21,10 +20,9 @@ const ClassDetails = () => {
     })
     // console.log(coursePayment);
 
-
     if (isLoading) {
         return <div className="text-center my-10 md:my-20">
-            <span className="loading loading-lg loading-spinner text-success"></span>
+            <span className="loading loading-bars loading-lg"></span>
         </div>
     }
 
@@ -45,7 +43,6 @@ const ClassDetails = () => {
                             <Link to="/dashboard/payment"><button className="btn bg-purple-600 text-white mt-6">Pay Now</button></Link>
                         </div>
                         <img src={course.photo} alt={course.title} className="max-w-lg h-auto mb-6" />
-
                     </div>
                 </div>
             </div>

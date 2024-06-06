@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import img1 from '../../../assets/icons/icons-enroll.png';
 import img2 from '../../../assets/icons/icons-assignment.png';
 import img3 from '../../../assets/icons/icons-calendar.png';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
@@ -24,7 +24,7 @@ const TeacherClassDetails = () => {
             Swal.fire({
                 position: "top-end",
                 icon: "success",
-                title: "Class Added Successfully!",
+                title: "Assignment Added Successfully!",
                 showConfirmButton: false,
                 timer: 1500
             });
@@ -34,15 +34,6 @@ const TeacherClassDetails = () => {
             // console.log(errors);
         }
     })
-
-    const { data: classData, isLoading, refetch } = useQuery({
-        queryKey: ['class-details', id],
-        queryFn: async () => {
-            const { data } = await axiosSecure.get(`/course/${id}`);
-            console.log(data);
-            return data;
-        }
-    });
 
     const { data: classAssignments } = useQuery({
         queryKey: ['class-assignments', id],

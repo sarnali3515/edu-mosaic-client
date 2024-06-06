@@ -1,6 +1,7 @@
 import { RiLogoutCircleLine } from "react-icons/ri";
 import useAuth from "../../../hooks/useAuth";
 import useRole from "../../../hooks/useRole";
+import Swal from "sweetalert2";
 
 
 const DashboardNav = () => {

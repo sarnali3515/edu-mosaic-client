@@ -27,7 +27,7 @@ const Navbar = () => {
     if (loading) {
         return (
             <div className="text-center my-4 md:my-6">
-                <span className="loading loading-lg loading-spinner text-success"></span>
+                <span className="loading loading-bars loading-lg"></span>
             </div>
         );
     }
