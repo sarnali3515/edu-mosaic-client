@@ -37,7 +37,13 @@ const Profile = () => {
                         <span className="font-semibold">  Email:</span> {users.email}</p>
                     <p className=" flex items-center justify-center gap-1 md:gap-2 text-lg  mb-2">
                         <MdOutlinePhone></MdOutlinePhone>
-                        <span className="font-semibold">  Phone:</span> {users.phone}</p>
+                        <span className="font-semibold">  Phone:</span>
+                        {
+                            users.phone ? <span> {users.phone}</span>
+                                :
+                                'N/A'
+                        }
+                    </p>
                     <p className=" flex items-center justify-center gap-1 md:gap-2 text-lg  mb-2">
                         <FaRegUser></FaRegUser>
                         <span className="font-semibold">  Role:</span> <span className="text-green-600 uppercase">{users.role}</span></p>

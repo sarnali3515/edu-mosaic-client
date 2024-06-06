@@ -23,6 +23,7 @@ import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import UpdateClass from "../pages/Dashboard/Teacher/UpdateClass";
 import TeacherClassDetails from "../pages/Dashboard/Teacher/TeacherClassDetails";
 import StudentClassDetails from "../pages/Dashboard/Student/StudentClassDetails";
+import AdminClassDetails from "../pages/Dashboard/Admin/AdminClassDetails";
 
 export const router = createBrowserRouter([
     {
@@ -84,6 +85,7 @@ export const router = createBrowserRouter([
                 element: <TeacherClassDetails></TeacherClassDetails>
             },
 
+
             // admin
             {
                 path: 'all-users',
@@ -96,6 +98,10 @@ export const router = createBrowserRouter([
             {
                 path: 'all-classes',
                 element: <ManageAllClasses></ManageAllClasses>
+            },
+            {
+                path: 'all-classes/:id',
+                element: <AdminClassDetails></AdminClassDetails>
             },
 
             // student

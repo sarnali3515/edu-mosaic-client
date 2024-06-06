@@ -63,7 +63,16 @@ const TeachOn = () => {
         }
     }
 
-    if (loading || userLoading) {
+    const { data: users = [], isLoading } = useQuery({
+        queryKey: ['user', user?.email],
+        queryFn: async () => {
+            const { data } = await axiosSecure.get(`/users/${user?.email}`)
+            console.log(data);
+            return data;
+        }
+    })
+
+    if (loading || userLoading || isLoading) {
         return (
             <div className="text-center my-4 md:my-6">
                 <span className="loading loading-bars loading-lg"></span>
@@ -76,9 +85,18 @@ const TeachOn = () => {
             <Helmet>
                 <title>EduMosaic - Teach on EduMosaic</title>
             </Helmet>
-            <div className="hero py-10 bg-purple-200 min-h-screen">
-                <div className="card w-full max-w-2xl border border-purple-600 mx-auto">
-                    <h2 className="text-3xl text-center font-bold mt-8">Apply for Teaching</h2>
+
+            <div className="py-2 bg-purple-200 min-h-screen">
+                {
+                    users.status === 'Rejected' ?
+                        <h2 className="text-xl md:text-3xl text-center font-bold mt-8">Your Previous Submission is rejected. Apply for another!</h2>
+                        :
+                        <></>
+
+                }
+                <div className="card w-full max-w-2xl border my-8 border-purple-600 mx-auto">
+                    <h2 className="text-xl md:text-3xl text-center font-bold mt-8">Apply for Teaching</h2>
+
                     <div className="card-body">
                         {userData.role === 'teacher' ? (
                             <div className="text-center">
@@ -159,7 +177,11 @@ const TeachOn = () => {
                                     {errors.category && <span className="text-red-600">Category is required</span>}
                                 </div>
                                 <div className="form-control mt-6">
-                                    <button type="submit" className="btn bg-purple-600 text-white">Submit for Review</button>
+                                    <button type="submit" className="btn bg-purple-600 text-white">{
+                                        users.status === 'Rejected' ?
+                                            'Request to Another'
+                                            : 'Submit for Review'
+                                    }</button>
                                 </div>
                             </form>
                         )}

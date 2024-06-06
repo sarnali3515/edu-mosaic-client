@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 
 
@@ -145,7 +146,9 @@ const ManageAllClasses = () => {
                                         </>
                                 }
                                 <th>
-                                    <button disabled={course.status === 'Pending' || course.status === 'Rejected'} className="btn btn-xs w-24 bg-transparent text-blue-600">See Progress</button>
+                                    <Link to={`/dashboard/all-classes/${course._id}`}>
+                                        <button disabled={course.status === 'Pending' || course.status === 'Rejected'} className="btn btn-xs w-24 bg-transparent text-blue-600">See Progress</button>
+                                    </Link>
                                 </th>
                             </tr>
                         ))}

@@ -31,6 +31,16 @@ const StudentClassDetails = () => {
         }
 
     });
+    console.log(enrollClass.classId);
+
+    // const { data: course = [] } = useQuery({
+    //     queryKey: ['course', enrollClass.classId],
+    //     queryFn: async () => {
+    //         const { data } = await axiosPublic.get(`/course/${enrollClass.classId}`);
+    //         console.log(data);
+    //         return data;
+    //     }
+    // });
 
     const { mutateAsync } = useMutation({
         mutationFn: async (evaluationData) => {
@@ -61,11 +71,13 @@ const StudentClassDetails = () => {
         reset();
     };
 
+    // const classId = course?._id;
+    // console.log(classId);
 
 
     const onSubmit = async (data) => {
         const description = data.description;
-        const classId = id;
+        const classId = enrollClass.classId;
         const studentName = user?.displayName;
         const studentPhoto = user?.photoURL;
         const classTitle = enrollClass?.title;

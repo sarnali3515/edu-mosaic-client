@@ -2,22 +2,24 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from 'sweetalert2'
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import { useState } from "react";
 
 
 const AllUsers = () => {
     // const { user, loading } = useAuth();
     const axiosSecure = useAxiosSecure();
     const axiosPublic = useAxiosPublic();
+    const [searchQuery, setSearchQuery] = useState("");
 
 
     const { data: users, isLoading, refetch } = useQuery({
-        queryKey: ['users'],
+        queryKey: ["users", searchQuery],
         queryFn: async () => {
-            const { data } = await axiosSecure('/users')
-            // console.log(data);
-            return data
-        }
-    })
+            const { data } = await axiosSecure(`/users?search=${searchQuery}`);
+            return data;
+        },
+
+    });
 
     const handleMakeAdmin = user => {
         Swal.fire({
@@ -49,6 +51,11 @@ const AllUsers = () => {
         });
 
     }
+    const handleSearch = () => {
+        refetch(); // Trigger the refetch to perform the search
+    };
+
+
 
     if (isLoading) {
         return (
@@ -66,7 +73,15 @@ const AllUsers = () => {
                         type="text"
                         placeholder="Search by username or email"
                         className="input input-bordered w-full max-w-md"
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
                     />
+                    <button
+                        className="ml-2 px-4 py-2 rounded-md bg-purple-400 text-white hover:bg-purple-600 focus:outline-none"
+                        onClick={handleSearch}
+                    >
+                        Search
+                    </button>
                 </div>
                 <div className="overflow-x-auto shadow-md">
                     <table className="table">
