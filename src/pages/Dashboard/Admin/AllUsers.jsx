@@ -3,19 +3,21 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from 'sweetalert2'
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import { useState } from "react";
+import { FaSearch } from 'react-icons/fa';
 
 
 const AllUsers = () => {
-    // const { user, loading } = useAuth();
     const axiosSecure = useAxiosSecure();
     const axiosPublic = useAxiosPublic();
     const [searchQuery, setSearchQuery] = useState("");
+    // const [searchQuery, setSearchQuery] = useState("");
+    const [queryToSearch, setQueryToSearch] = useState("");
 
 
     const { data: users, isLoading, refetch } = useQuery({
-        queryKey: ["users", searchQuery],
+        queryKey: ["users", queryToSearch],
         queryFn: async () => {
-            const { data } = await axiosSecure(`/users?search=${searchQuery}`);
+            const { data } = await axiosSecure(`/users?search=${queryToSearch}`);
             return data;
         },
 
@@ -52,10 +54,9 @@ const AllUsers = () => {
 
     }
     const handleSearch = () => {
-        refetch(); // Trigger the refetch to perform the search
+        setQueryToSearch(searchQuery);
+        refetch()
     };
-
-
 
     if (isLoading) {
         return (
@@ -76,12 +77,15 @@ const AllUsers = () => {
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                     />
-                    <button
-                        className="ml-2 px-4 py-2 rounded-md bg-purple-400 text-white hover:bg-purple-600 focus:outline-none"
-                        onClick={handleSearch}
-                    >
-                        Search
-                    </button>
+                    <div className="flex">
+
+                        <button
+                            className="flex items-center gap-2 -ml-3 px-4 py-2 rounded-md bg-purple-400 text-white hover:bg-purple-600 focus:outline-none"
+                            onClick={handleSearch}
+                        >
+                            <FaSearch></FaSearch> Search
+                        </button>
+                    </div>
                 </div>
                 <div className="overflow-x-auto shadow-md">
                     <table className="table">
