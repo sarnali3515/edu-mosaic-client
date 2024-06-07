@@ -63,10 +63,14 @@ const PopularCourses = () => {
                                                 <figure className="">
                                                     <img src={course.photo} alt="Shoes" className="h-60 w-full" />
                                                 </figure>
+
                                                 <div className="p-4 text-left">
                                                     <h2 className="font-bold text-xl  text-black">{course.title}</h2>
                                                     <p className='text-base mt-3 text-gray-800'>{course.description}</p>
-                                                    <p className='text-black text-base mt-2'><span className='font-semibold'>Enrollment:</span> {course.totalEnrollment}</p>
+                                                    <div className='flex justify-between '>
+                                                        <p className='text-black text-base mt-2'><span className='font-semibold'>Enrollment:</span> {course.totalEnrollment}</p>
+                                                        <p className='text-purple-800 text-base mt-2 font-bold'> $ {course.price}</p>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </SwiperSlide>

@@ -14,8 +14,8 @@ const useWebStats = () => {
             return data
         }
     })
-    const { data: courses } = useQuery({
-        queryKey: ['courses'],
+    const { data: coursesAll } = useQuery({
+        queryKey: ['coursesAll'],
         queryFn: async () => {
             const { data } = await axiosSecure('/courses')
             // console.log(data);
@@ -31,7 +31,7 @@ const useWebStats = () => {
         }
     })
     const userLength = users?.length;
-    const courseLength = courses?.length;
+    const courseLength = coursesAll?.length;
     const enrollLength = enrollClass?.length;
 
 

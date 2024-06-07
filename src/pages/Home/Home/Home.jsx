@@ -1,3 +1,4 @@
+import BestTeachers from "../BestTeachers/BestTeachers";
 import Feedback from "../Feedback/Feedback";
 import PopularCourses from "../PopularCourses/PopularCourses";
 import WebsiteStats from "../WebsiteStats/WebsiteStats";
@@ -17,8 +18,10 @@ const Home = () => {
             <PartnersSection></PartnersSection>
             <PopularCourses></PopularCourses>
             <JoinAsTeacher></JoinAsTeacher>
-            <Feedback></Feedback>
+            <BestTeachers></BestTeachers>
             <WebsiteStats></WebsiteStats>
+            <Feedback></Feedback>
+
 
         </div>
     );

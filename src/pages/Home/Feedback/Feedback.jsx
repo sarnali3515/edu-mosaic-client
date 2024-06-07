@@ -16,7 +16,7 @@ const Feedback = () => {
         queryKey: ['evaluations'],
         queryFn: async () => {
             const { data } = await axiosPublic.get(`/evaluations`);
-            console.log(data);
+            // console.log(data);
             return data;
         }
     });
@@ -54,13 +54,13 @@ const Feedback = () => {
                                         />
                                         <div className='flex gap-4'>
                                             <div className="avatar">
-                                                <div className="w-10 md:w-14 rounded-full">
+                                                <div className="w-10 md:w-14 h-10 md:h-14 rounded-full">
                                                     <img src={evaluation.studentPhoto} />
                                                 </div>
                                             </div>
                                             <div>
                                                 <h2 className="text-lg font-semibold">{evaluation.studentName}</h2>
-                                                <p className='text-sm'>Student of {evaluation.classTitle}</p>
+                                                <p className='text-xs'>Student of <span className='font-bold'>{evaluation.classTitle}</span></p>
                                             </div>
                                         </div>
                                     </div>
