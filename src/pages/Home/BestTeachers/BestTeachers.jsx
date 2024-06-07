@@ -48,7 +48,7 @@ const BestTeachers = () => {
 
     return (
         <div>
-            <h2 className="text-3xl my-8 text-center font-bold"> Our Best Teachers</h2>
+            <h2 className="text-3xl mt-12 mb-5 text-center font-bold"> Our Best Teachers</h2>
             <Swiper
 
                 freeMode={true}

@@ -1,6 +1,7 @@
 import BestTeachers from "../BestTeachers/BestTeachers";
 import Feedback from "../Feedback/Feedback";
 import PopularCourses from "../PopularCourses/PopularCourses";
+import SubscribeNewsletter from "../SubscribeNewLetter/SubscribeNewsLetter";
 import WebsiteStats from "../WebsiteStats/WebsiteStats";
 import Carousel from "./Banner/Carousel";
 import JoinAsTeacher from "./JoinAsTeacher/JoinAsTeacher";
@@ -21,6 +22,7 @@ const Home = () => {
             <BestTeachers></BestTeachers>
             <WebsiteStats></WebsiteStats>
             <Feedback></Feedback>
+            <SubscribeNewsletter></SubscribeNewsletter>
 
 
         </div>
