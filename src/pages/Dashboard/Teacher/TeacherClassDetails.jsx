@@ -51,9 +51,31 @@ const TeacherClassDetails = () => {
             return data;
         }
     });
+    // const { data: perDaySubmissions } = useQuery({
+    //     queryKey: ['submit-assignment', id],
+    //     queryFn: async () => {
+    //         const { data } = await axiosSecure.get(`/submit-assignment/${id}`);
+    //         console.log(data);
+    //         return data;
+    //     }
+    // });
+
+    const newDate = new Date();
+    const submissionDate = newDate.toISOString().split('T')[0]; // Format as YYYY-MM-DD
+    console.log(submissionDate);
+
+    const { data: perDaySubmission } = useQuery({
+        queryKey: ['submit-day', submissionDate],
+        queryFn: async () => {
+            const { data } = await axiosSecure.get(`/submit-day/${submissionDate}`);
+            console.log(data);
+            return data;
+        }
+    });
 
     const totalAssignment = classAssignments?.length
     const totalEnrollment = classEnrollments?.length
+    const submissionPerDay = perDaySubmission?.length
 
 
     const handleCreateClick = () => {
@@ -117,7 +139,7 @@ const TeacherClassDetails = () => {
                     <div className='flex items-center justify-center'>
                         <img className='w-10' src={img3} alt="" />
                     </div>
-                    <h2 className="text-4xl font-bold text-center">0</h2>
+                    <h2 className="text-4xl font-bold text-center">{submissionPerDay}</h2>
                     <h2 className="text-xl font-semibold text-center">Per Day Submission</h2>
                 </div>
             </div>

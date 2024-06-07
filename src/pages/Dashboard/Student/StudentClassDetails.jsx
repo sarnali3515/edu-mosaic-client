@@ -26,25 +26,35 @@ const StudentClassDetails = () => {
         queryKey: ['enroll-class', id],
         queryFn: async () => {
             const { data } = await axiosSecure.get(`/enrollment/${id}`);
-            console.log(data);
+            // console.log(data);
             return data;
         }
 
     });
-    console.log(enrollClass.classId);
+    // console.log(enrollClass.classId);
 
-    // const { data: course = [] } = useQuery({
-    //     queryKey: ['course', enrollClass.classId],
-    //     queryFn: async () => {
-    //         const { data } = await axiosPublic.get(`/course/${enrollClass.classId}`);
-    //         console.log(data);
-    //         return data;
-    //     }
-    // });
+    const { data: classEnrollment } = useQuery({
+        queryKey: ['class-enrollment', id],
+        queryFn: async () => {
+            const { data } = await axiosSecure.get(`/enrolled-class/${id}`);
+            return data;
+        }
+    });
 
-    const { mutateAsync } = useMutation({
+    const { data: classAssignments = [], isLoading } = useQuery({
+        queryKey: ['class-assignment', id],
+        queryFn: async () => {
+            const { data } = await axiosSecure.get(`/assignments/${classEnrollment.classId}`);
+            return data;
+        },
+        enabled: !!classEnrollment
+    });
+
+    // evaluation post
+    const { mutateAsync: submitEvaluation } = useMutation({
         mutationFn: async (evaluationData) => {
             const { data } = await axiosPublic.post(`/evaluations`, evaluationData);
+            console.log(data);
             return data;
         },
         onSuccess: (data) => {
@@ -71,10 +81,6 @@ const StudentClassDetails = () => {
         reset();
     };
 
-    // const classId = course?._id;
-    // console.log(classId);
-
-
     const onSubmit = async (data) => {
         const description = data.description;
         const classId = enrollClass.classId;
@@ -92,7 +98,7 @@ const StudentClassDetails = () => {
                 studentPhoto
 
             };
-            await mutateAsync(evaluationData);
+            await submitEvaluation(evaluationData);
         } catch (err) {
             console.error(err);
         }
@@ -100,22 +106,42 @@ const StudentClassDetails = () => {
         reset();
     };
 
-    const { data: classEnrollment } = useQuery({
-        queryKey: ['class-enrollment', id],
-        queryFn: async () => {
-            const { data } = await axiosSecure.get(`/enrolled-class/${id}`);
+
+    // assignment submission post
+    const { mutateAsync: submitAssignment } = useMutation({
+        mutationFn: async (assignmentSubData) => {
+            const { data } = await axiosPublic.post(`/submit-assignment`, assignmentSubData);
             return data;
+        },
+        onSuccess: () => {
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Assignment Submitted Successfully!",
+                showConfirmButton: false,
+                timer: 1500
+            });
+        },
+        onError: () => {
+            // Handle error
         }
     });
 
-    const { data: classAssignments = [], isLoading } = useQuery({
-        queryKey: ['class-assignment', id],
-        queryFn: async () => {
-            const { data } = await axiosSecure.get(`/assignments/${classEnrollment.classId}`);
-            return data;
-        },
-        enabled: !!classEnrollment
-    });
+    const handleAssignmentSubmit = async (assignmentClassId) => {
+        try {
+            const newDate = new Date();
+            const submissionDate = newDate.toISOString().split('T')[0];
+            console.log(submissionDate);
+
+            const assignmentSubData = {
+                assignmentClassId,
+                submissionDate: submissionDate
+            };
+            await submitAssignment(assignmentSubData);
+        } catch (err) {
+            console.error(err);
+        }
+    };
 
     if (isLoading) {
         return (
@@ -178,7 +204,7 @@ const StudentClassDetails = () => {
                                 <td>{classAssignment.assignmentDescription}</td>
                                 <td>{classAssignment.assignmentDeadline}</td>
                                 <th>
-                                    <button className="btn btn-xs bg-purple-500 text-white">Submit</button>
+                                    <button onClick={() => handleAssignmentSubmit(classAssignment.classId)} className="btn btn-xs bg-purple-500 text-white">Submit</button>
                                 </th>
                             </tr>
                         )}
