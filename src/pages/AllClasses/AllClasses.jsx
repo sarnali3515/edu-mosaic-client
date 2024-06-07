@@ -2,20 +2,16 @@ import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import useCourses from '../../hooks/useCourses';
 import { Link } from 'react-router-dom';
-// import { useQuery } from "@tanstack/react-query";
-// import useAxiosSecure from "../../hooks/useAxiosSecure";
-
 
 const AllClasses = () => {
     const [courses, isLoading] = useCourses();
-    // const axiosSecure = useAxiosSecure();
     console.log(courses);
 
     // Filter the courses to show only those with status 'Approved'
     const approvedCourses = courses.filter(course => course.status === 'Approved');
 
     const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 2;
+    const itemsPerPage = 10;
 
     const indexOfLastCourse = currentPage * itemsPerPage;
     const indexOfFirstCourse = indexOfLastCourse - itemsPerPage;
@@ -39,25 +35,12 @@ const AllClasses = () => {
         setCurrentPage(pageNumber);
     };
 
-    // const { data: classEnrollments } = useQuery({
-    //     queryKey: ['class-enrollments', id],
-    //     queryFn: async () => {
-    //         const { data } = await axiosSecure.get(`/enrollments/${id}`);
-    //         console.log(data);
-    //         return data;
-    //     }
-    // });
-    // const fetchEnrollments = async (id) => {
-    //     const { data } = await axiosSecure.get(`/enrollments/${id}`);
-    //     return data;
-    // };
-
-    // const totalEnrollment = classEnrollments?.length
-
     if (isLoading) {
-        return <div className="text-center my-10 md:my-20">
-            <span className="loading loading-bars loading-lg"></span>
-        </div>
+        return (
+            <div className="text-center my-10 md:my-20">
+                <span className="loading loading-bars loading-lg"></span>
+            </div>
+        );
     }
 
     return (
@@ -82,33 +65,40 @@ const AllClasses = () => {
                                 </div>
                             </div>
                         </div>
-
                     ))}
                 </div>
-                <div className="flex justify-center items-center mt-8 space-x-2">
-                    <button
-                        className={`px-3 py-1 border rounded ${currentPage === 1 ? 'bg-gray-200 text-gray-500 cursor-not-allowed' : 'bg-white text-purple-500'}`}
-                        onClick={handlePrevPage}
-                        disabled={currentPage === 1}
-                    >
-                        Prev
-                    </button>
-                    {Array.from({ length: totalPages }, (_, index) => (
+                <div className="flex justify-between items-center mt-8 space-y-2">
+                    <div className="text-center">
+                        <p className='text-purple-600 font-semibold'>
+                            Showing {indexOfFirstCourse + 1} to {indexOfLastCourse > approvedCourses.length ? approvedCourses.length : indexOfLastCourse} of {approvedCourses.length} results
+                        </p>
+                    </div>
+                    <div className="flex justify-center items-center space-x-2">
                         <button
-                            key={index}
-                            className={`px-3 py-1 border rounded ${currentPage === index + 1 ? 'bg-purple-500 text-white' : 'bg-white text-purple-500'}`}
-                            onClick={() => handlePageClick(index + 1)}
+                            className={`px-3 py-1 border rounded ${currentPage === 1 ? 'bg-gray-200 text-gray-500 cursor-not-allowed' : 'bg-white text-purple-500'}`}
+                            onClick={handlePrevPage}
+                            disabled={currentPage === 1}
                         >
-                            {index + 1}
+                            Prev
                         </button>
-                    ))}
-                    <button
-                        className={`px-3 py-1 border rounded ${currentPage === totalPages ? 'bg-gray-200 text-gray-500 cursor-not-allowed' : 'bg-white text-purple-500'}`}
-                        onClick={handleNextPage}
-                        disabled={currentPage === totalPages}
-                    >
-                        Next
-                    </button>
+                        {Array.from({ length: totalPages }, (_, index) => (
+                            <button
+                                key={index}
+                                className={`px-3 py-1 border rounded ${currentPage === index + 1 ? 'bg-purple-500 text-white' : 'bg-white text-purple-500'}`}
+                                onClick={() => handlePageClick(index + 1)}
+                            >
+                                {index + 1}
+                            </button>
+                        ))}
+                        <button
+                            className={`px-3 py-1 border rounded ${currentPage === totalPages ? 'bg-gray-200 text-gray-500 cursor-not-allowed' : 'bg-white text-purple-500'}`}
+                            onClick={handleNextPage}
+                            disabled={currentPage === totalPages}
+                        >
+                            Next
+                        </button>
+                    </div>
+
                 </div>
             </div>
         </div>

@@ -3,6 +3,7 @@ import './Navbar.css'
 import { RiLogoutCircleLine } from "react-icons/ri";
 import Swal from "sweetalert2";
 import useAuth from "../../../hooks/useAuth";
+import { FiLogIn } from "react-icons/fi";
 
 
 const Navbar = () => {
@@ -76,7 +77,7 @@ const Navbar = () => {
                     ) : (
                         <>
 
-                            <Link to="/login" className="btn btn-ghost underline">Login</Link>
+                            <Link to="/login" className="font-semibold hover:underline hover:text-purple-600 md:mr-6">Login</Link>
                         </>
                     )}
 
