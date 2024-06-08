@@ -2,12 +2,12 @@ import { useState } from 'react';
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from 'sweetalert2';
-import useAxiosPublic from "../../../hooks/useAxiosPublic";
+// import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import { FaSearch } from 'react-icons/fa';
 
 const AllUsers = () => {
     const axiosSecure = useAxiosSecure();
-    const axiosPublic = useAxiosPublic();
+    // const axiosPublic = useAxiosPublic();
     const [searchQuery, setSearchQuery] = useState("");
     const [queryToSearch, setQueryToSearch] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
@@ -32,7 +32,7 @@ const AllUsers = () => {
             confirmButtonText: "Yes, Make Admin!"
         }).then((result) => {
             if (result.isConfirmed) {
-                axiosPublic.patch(`/users/admin/${user._id}`)
+                axiosSecure.patch(`/users/admin/${user._id}`)
                     .then(res => {
                         console.log(res.data);
                         refetch();
@@ -40,7 +40,7 @@ const AllUsers = () => {
                             Swal.fire({
                                 position: "top-end",
                                 icon: "success",
-                                title: `Admin now`,
+                                title: `This Users is admin now`,
                                 showConfirmButton: false,
                                 timer: 1500
                             });
@@ -52,7 +52,7 @@ const AllUsers = () => {
 
     const handleSearch = () => {
         setQueryToSearch(searchQuery);
-        setCurrentPage(1);  // Reset to first page on new search
+        setCurrentPage(1);
         refetch();
     };
 
