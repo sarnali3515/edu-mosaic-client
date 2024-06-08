@@ -28,6 +28,7 @@ const TeacherClassDetails = () => {
                 showConfirmButton: false,
                 timer: 1500
             });
+            refetch();
 
         },
         onError: () => {
@@ -35,7 +36,7 @@ const TeacherClassDetails = () => {
         }
     })
 
-    const { data: classAssignments } = useQuery({
+    const { data: classAssignments = [], refetch } = useQuery({
         queryKey: ['class-assignments', id],
         queryFn: async () => {
             const { data } = await axiosSecure.get(`/assignments/${id}`);
@@ -69,7 +70,7 @@ const TeacherClassDetails = () => {
         queryFn: async () => {
             const { data } = await axiosSecure.get(`/submit-day/${submissionDate}`);
             console.log(data);
-            return data;
+            return data.filter(submission => submission.assignmentClassId === id);
         }
     });
 
@@ -185,6 +186,32 @@ const TeacherClassDetails = () => {
                     </div>
                 </div>
             )}
+            <h2 className="text-2xl font-bold text-center mt-8">All Assignments</h2>
+            <div className="overflow-x-auto shadow-md md:mx-10 mt-5">
+                <table className="table">
+                    <thead className="bg-purple-300">
+                        <tr>
+                            <th></th>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Deadline</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {classAssignments?.map((classAssignment, idx) =>
+                            <tr key={classAssignment._id}>
+                                <th>{idx + 1}</th>
+                                <td>{classAssignment.assignmentTitle}</td>
+                                <td>{classAssignment.assignmentDescription}</td>
+                                <td>{classAssignment.assignmentDeadline}</td>
+
+                            </tr>
+                        )}
+                    </tbody>
+                </table>
+                {classAssignments?.length === 0 && <p className="py-5 text-center text-lg">No Assignment added yet.</p>}
+            </div>
         </div>
     );
 };

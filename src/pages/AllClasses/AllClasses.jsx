@@ -54,7 +54,9 @@ const AllClasses = () => {
                     {currentCourses.map((course) => (
                         <div key={course._id}>
                             <div className="bg-white shadow-md rounded-lg overflow-hidden flex flex-col md:flex-row">
-                                <img src={course.photo} alt={course.title} className="w-full md:w-1/3 h-64 md:h-72 object-cover p-5" />
+                                <div className='md:w-2/5 '>
+                                    <img src={course.photo} alt={course.title} className="w-full h-64 md:h-80 p-5 " />
+                                </div>
                                 <div className="p-8 flex-1">
                                     <h5 className="text-2xl font-semibold w-24 p-1 border border-purple-300 mb-3">{course.price}.00</h5>
                                     <h2 className="text-2xl md:text-3xl font-bold">{course.title}</h2>

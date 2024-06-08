@@ -53,7 +53,7 @@ const StudentClassDetails = () => {
     // evaluation post
     const { mutateAsync: submitEvaluation } = useMutation({
         mutationFn: async (evaluationData) => {
-            const { data } = await axiosPublic.post(`/evaluations`, evaluationData);
+            const { data } = await axiosSecure.post(`/evaluations`, evaluationData);
             console.log(data);
             return data;
         },

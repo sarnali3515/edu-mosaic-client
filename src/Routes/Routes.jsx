@@ -24,6 +24,8 @@ import UpdateClass from "../pages/Dashboard/Teacher/UpdateClass";
 import TeacherClassDetails from "../pages/Dashboard/Teacher/TeacherClassDetails";
 import StudentClassDetails from "../pages/Dashboard/Student/StudentClassDetails";
 import AdminClassDetails from "../pages/Dashboard/Admin/AdminClassDetails";
+import TeacherRoute from "./TeacherRoute";
+import AdminRoute from "./AdminRoute";
 
 export const router = createBrowserRouter([
     {
@@ -70,52 +72,57 @@ export const router = createBrowserRouter([
             // teacher
             {
                 path: 'add-class',
-                element: <AddClass></AddClass>
+                element: <PrivateRoute><TeacherRoute><AddClass></AddClass></TeacherRoute></PrivateRoute>
             },
             {
                 path: 'my-classes',
-                element: <MyClasses></MyClasses>
+                element: <PrivateRoute><TeacherRoute><MyClasses></MyClasses></TeacherRoute></PrivateRoute>
+
             },
             {
                 path: 'my-classes/:id',
-                element: <UpdateClass></UpdateClass>
+                element: <PrivateRoute><TeacherRoute><UpdateClass></UpdateClass></TeacherRoute></PrivateRoute>
+
             },
             {
                 path: 'teacher-class-details/:id',
-                element: <TeacherClassDetails></TeacherClassDetails>
+                element: <PrivateRoute><TeacherRoute> <TeacherClassDetails></TeacherClassDetails></TeacherRoute></PrivateRoute>
+
             },
 
 
             // admin
             {
                 path: 'all-users',
-                element: <AllUsers></AllUsers>
+                element: <PrivateRoute><AdminRoute><AllUsers></AllUsers></AdminRoute></PrivateRoute>
             },
             {
                 path: 'teacher-req',
-                element: <TeacherReq></TeacherReq>
+                element: <PrivateRoute><AdminRoute><TeacherReq></TeacherReq></AdminRoute></PrivateRoute>
             },
             {
                 path: 'all-classes',
-                element: <ManageAllClasses></ManageAllClasses>
+                element: <PrivateRoute><AdminRoute><ManageAllClasses></ManageAllClasses></AdminRoute></PrivateRoute>
+
             },
             {
                 path: 'all-classes/:id',
-                element: <AdminClassDetails></AdminClassDetails>
+                element: <PrivateRoute><AdminRoute><AdminClassDetails></AdminClassDetails></AdminRoute></PrivateRoute>
+
             },
 
             // student
             {
                 path: 'payment',
-                element: <Payment></Payment>
+                element: <PrivateRoute><Payment></Payment></PrivateRoute>
             },
             {
                 path: 'enroll-class',
-                element: <MyEnrolledClass></MyEnrolledClass>
+                element: <PrivateRoute><MyEnrolledClass></MyEnrolledClass></PrivateRoute>
             },
             {
                 path: 'enroll-class/:id',
-                element: <StudentClassDetails></StudentClassDetails>
+                element: <PrivateRoute><StudentClassDetails></StudentClassDetails></PrivateRoute>
             },
         ]
     }

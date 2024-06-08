@@ -38,22 +38,22 @@ export default function Carousel() {
                 <SwiperSlide>
                     <Slide
                         image={img1}
-                        title='Discover Your Next Favorite Product'
-                        text='Explore our curated selection of top-rated products and find the perfect match for your needs'
+                        title='Discover Our Top Courses'
+                        text='Unlock new skills with our expert-led classes. Stay updated on the latest courses and exclusive offers by subscribing to our newsletter.'
                     ></Slide>
                 </SwiperSlide>
                 <SwiperSlide>
                     <Slide
                         image={img2}
-                        title='Expert Recommendations Just for You'
-                        text='Get personalized recommendations from our community of experts and make informed purchasing decisions.'
+                        title='Boost Your Career with Us'
+                        text='Explore diverse subjects and gain industry expertise. Subscribe for the latest updates and special offers'
                     ></Slide>
                 </SwiperSlide>
                 <SwiperSlide>
                     <Slide
                         image={img3}
-                        title='Stay Ahead of the Curve'
-                        text='Stay updated on the latest trends and innovations in the world of products with our comprehensive guides and reviews.'
+                        title='Reach Your Learning Goals'
+                        text='Advance your skills with our comprehensive courses. Get news, updates, and promotions by subscribing to our newsletter.'
                     ></Slide>
                 </SwiperSlide>
 
