@@ -3,7 +3,6 @@ import './Navbar.css'
 import { RiLogoutCircleLine } from "react-icons/ri";
 import Swal from "sweetalert2";
 import useAuth from "../../../hooks/useAuth";
-import { FiLogIn } from "react-icons/fi";
 
 
 const Navbar = () => {
@@ -68,7 +67,7 @@ const Navbar = () => {
                                     </div>
                                 </div>
                                 <ul tabIndex={0} className="dropdown-content space-y-2 z-[1] menu shadow bg-base-100 rounded-box w-56">
-                                    <li><button className="btn bg-purple-500 text-white">{user.displayName}</button></li>
+                                    <li><button disabled className="btn bg-purple-500 text-white disabled:bg-purple-500 disabled:text-white">{user.displayName}</button></li>
                                     <Link to="/dashboard"><li><button className="btn bg-purple-500 text-white">Dashboard</button></li></Link>
                                     <li><button onClick={handleSignOut} className="btn bg-purple-500 text-white"><RiLogoutCircleLine></RiLogoutCircleLine>Log Out</button></li>
                                 </ul>

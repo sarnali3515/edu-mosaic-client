@@ -2,9 +2,9 @@ import { useNavigate, useParams } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useForm } from "react-hook-form";
-import { toast } from 'react-toastify';
 import { Helmet } from "react-helmet-async";
 import { useQuery } from "@tanstack/react-query";
+import Swal from "sweetalert2";
 
 const UpdateClass = () => {
     const { user } = useAuth();
@@ -40,17 +40,25 @@ const UpdateClass = () => {
         try {
             const response = await axiosSecure.put(`/my-classes/update/${id}`, updatedClassData);
             if (response.data) {
-                toast.success('Class updated successfully');
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: `Class Updated`,
+                    showConfirmButton: false,
+                    timer: 1500
+                });
                 refetch()
                 navigate('/dashboard/my-classes');
             }
         } catch (err) {
-            toast.error('Failed to update class: ' + err.message);
+            console.log(err);
         }
     };
 
     if (isLoading) {
-        return <div>Loading...</div>;
+        return <div className="text-center my-10 md:my-20">
+            <span className="loading loading-bars loading-lg"></span>
+        </div>
     }
 
     return (

@@ -119,7 +119,7 @@ const TeacherClassDetails = () => {
 
     return (
         <div>
-            <h2>Teacher Class Details</h2>
+
             <h2 className='text-3xl text-center font-semibold mb-4'>Class Progress</h2>
             <div className="md:flex gap-5 border py-5 px-4 md:px-16 bg-purple-200 rounded-lg">
                 <div className="w-full border bg-white rounded-lg py-6">
@@ -148,7 +148,7 @@ const TeacherClassDetails = () => {
             <button onClick={handleCreateClick} className="btn w-full text-xl font-semibold flex item-center justify-center border border-purple-500 border-dashed mt-5">+ Create Assignment</button>
 
             {isModalOpen && (
-                <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50">
+                <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 z-10">
                     <div className="bg-white p-6 rounded-lg w-full max-w-2xl">
                         <h2 className="text-2xl mb-4">Create Assignment</h2>
                         <form onSubmit={handleSubmit(onSubmit)}>

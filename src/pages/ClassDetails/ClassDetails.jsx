@@ -31,10 +31,11 @@ const ClassDetails = () => {
             <Helmet>
                 <title>EduMosaic - Class Details</title>
             </Helmet>
-            <div className="hero py-10 ">
+            <div className="hero py-10 border-l-4 bg-purple-200 border-purple-400 rounded my-5">
                 <div className="card w-full max-w-6xl  mx-auto">
-                    <h2 className="text-3xl text-center font-bold mb-8">Course Details</h2>
-                    <div className="flex gap-20">
+                    <h2 className="text-3xl text-center font-bold border-b border-purple-400 pb-4">Course Details</h2>
+
+                    <div className="flex gap-20 mt-4">
                         <div className="space-y-4">
                             <h2 className="text-2xl font-bold mt-8">{course.title}</h2>
                             <p><strong>Teacher:</strong> {course.teacherName}</p>
@@ -42,7 +43,7 @@ const ClassDetails = () => {
                             <p><strong>Description:</strong> {course.description}</p>
                             <Link to="/dashboard/payment"><button className="btn bg-purple-600 text-white mt-6">Pay Now</button></Link>
                         </div>
-                        <img src={course.photo} alt={course.title} className="max-w-lg h-auto mb-6" />
+                        <img src={course.photo} alt={course.title} className="max-w-lg h-auto mb-6 rounded-lg" />
                     </div>
                 </div>
             </div>

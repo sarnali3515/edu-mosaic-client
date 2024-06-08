@@ -4,7 +4,7 @@ EduMosaic
 # Live Site Link: https://edu-mosaic-275a3.web.app/
 
 # Category : 
-Assignment_category_0008
+Assignment12_category_0008
 
 # Admin Credentials
 Username: kjsarnali2@gmail.com
@@ -41,3 +41,5 @@ Password: KJsarnali2
 - sweet alert2
 - axios
 - tanstack query
+- React CountUp
+- react helmet

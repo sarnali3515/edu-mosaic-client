@@ -12,11 +12,16 @@ import MenuItem from './Menu/MenuItem';
 
 const Sidebar = () => {
     const [isActive, setActive] = useState(true)
-    const [role] = useRole();
+    const [role, isLoading] = useRole();
     // console.log(role);
     // Sidebar Responsive Handler
     const handleToggle = () => {
         setActive(!isActive)
+    }
+    if (isLoading) {
+        return <div className="text-center my-10 md:my-20">
+            <span className="loading loading-bars loading-lg"></span>
+        </div>
     }
     return (
         <>
