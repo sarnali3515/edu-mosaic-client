@@ -43,7 +43,7 @@ const Feedback = () => {
                     evaluations?.map(evaluation =>
                         <SwiperSlide key={evaluation._id}>
                             <div className='relative mt-3'>
-                                <div className="card w-full h-48 bg-[#D5CAEB]">
+                                <div className="card w-full h-60 md:h-52 bg-[#D5CAEB]">
                                     <div className="card-body">
                                         <p>{evaluation.description}</p>
                                         <Rating

@@ -49,7 +49,7 @@ const AllClasses = () => {
                 <title>EduMosaic - All Classes</title>
             </Helmet>
             <div className='max-w-screen-xl mx-auto'>
-                <h1 className="text-3xl font-semibold mb-8 text-center">All Classes</h1>
+                <h1 className="text-xl md:text-3xl font-semibold mb-8 text-center">All Classes</h1>
                 <div className="space-y-8">
                     {currentCourses.map((course) => (
                         <div key={course._id}>
@@ -71,7 +71,7 @@ const AllClasses = () => {
                 </div>
                 <div className="flex justify-between items-center mt-8 space-y-2">
                     <div className="text-center">
-                        <p className='text-purple-600 font-semibold'>
+                        <p className='text-purple-600 text-xs md:text-base font-semibold'>
                             Showing {indexOfFirstCourse + 1} to {indexOfLastCourse > approvedCourses.length ? approvedCourses.length : indexOfLastCourse} of {approvedCourses.length} results
                         </p>
                     </div>

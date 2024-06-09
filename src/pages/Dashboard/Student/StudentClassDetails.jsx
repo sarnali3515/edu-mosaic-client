@@ -153,7 +153,7 @@ const StudentClassDetails = () => {
 
     return (
         <div>
-            <button onClick={handleCreateClick} className="btn w-1/4 text-base font-bold flex item-center justify-center border border-purple-800 border-dashed mt-5 mb-8 text-purple-800 bg-purple-400 md:ml-12">Add Teaching Evaluation</button>
+            <button onClick={handleCreateClick} className="btn md:w-1/4 text-base font-bold flex item-center justify-center border border-purple-800 border-dashed mt-5 mb-8 text-purple-800 bg-purple-400 md:ml-12">Add Teaching Evaluation</button>
             {isModalOpen && (
                 <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 z-10">
                     <div className="bg-white p-6 rounded-lg w-full max-w-xl">

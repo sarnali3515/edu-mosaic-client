@@ -51,7 +51,7 @@ const MyEnrolledClass = () => {
 
     return (
         <div>
-            <h2 className="text-3xl text-center font-bold mb-5">My Enrolled Classes</h2>
+            <h2 className="text-xl md:text-3xl text-center font-bold mb-5">My Enrolled Classes</h2>
             {enrollClasses.length === 0 && <p className="text-center text-lg">You have not enrolled in any classes</p>}
             <div className="grid gap-8 md:grid-cols-2">
                 {currentClasses.map(enrollClass => (

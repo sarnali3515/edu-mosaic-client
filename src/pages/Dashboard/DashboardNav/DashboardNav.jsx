@@ -27,16 +27,16 @@ const DashboardNav = () => {
         <div className="navbar bg-purple-200">
 
             <div className="navbar-start md:ml-5">
-                <h2 className="text-lg md:text-xl font-bold uppercase">{role} Dashboard</h2>
+                <h2 className="text-sm md:text-xl font-bold uppercase">{role} Dashboard</h2>
             </div>
             <div className="navbar-end md:mr-8">
-                <div className="mr-3">
-                    <h2 className="text-sm font-semibold">{user.displayName}</h2>
+                <div className="md:mr-3">
+                    <h2 className="text-xs md:text-sm  font-semibold">{user.displayName}</h2>
                     <p className="text-xs text-end ">{role}</p>
                 </div>
                 <div className="dropdown z-10 dropdown-hover dropdown-bottom dropdown-end">
                     <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                        <div className="w-10 rounded-full" title={user.displayName}>
+                        <div className="w-7 md:w-10 rounded-full" title={user.displayName}>
                             <img alt={user.displayName} src={user.photoURL} />
                         </div>
                     </div>

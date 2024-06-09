@@ -88,7 +88,7 @@ const MyClasses = () => {
 
     return (
         <div>
-            <h2 className="text-3xl text-center font-bold mb-5">My Classes</h2>
+            <h2 className="text-xl md:text-3xl text-center font-bold mb-5">My Classes</h2>
             {courses.length === 0 && <p className="text-center text-lg">You did not add any classes</p>}
             <div className="space-y-8">
                 {currentCourses.map((course) => (

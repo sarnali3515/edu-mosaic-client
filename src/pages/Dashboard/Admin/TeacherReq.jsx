@@ -80,7 +80,7 @@ const TeacherReq = () => {
 
     return (
         <div>
-            <h2 className="text-3xl text-center font-bold mb-5">Teacher Requests</h2>
+            <h2 className="text-xl md:text-3xl text-center font-bold mb-5">Teacher Requests</h2>
             <div className="overflow-x-auto shadow-lg">
                 <table className="table">
                     {/* head */}
@@ -138,7 +138,7 @@ const TeacherReq = () => {
             </div>
             <div className="flex justify-between items-center mt-8 space-y-2">
                 <div className="text-left">
-                    <p className='text-purple-600 font-semibold'>
+                    <p className='text-xs md:text-base text-purple-600 font-semibold'>
                         Showing {indexOfFirstRequest + 1} to {indexOfLastRequest > requests.length ? requests.length : indexOfLastRequest} of {requests.length} results
                     </p>
                 </div>

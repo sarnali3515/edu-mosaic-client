@@ -32,10 +32,10 @@ const ClassDetails = () => {
                 <title>EduMosaic - Class Details</title>
             </Helmet>
             <div className="hero py-10 border-l-4 bg-purple-200 border-purple-400 rounded my-5">
-                <div className="card w-full max-w-6xl  mx-auto">
+                <div className="card w-full md:max-w-6xl mx-auto">
                     <h2 className="text-3xl text-center font-bold border-b border-purple-400 pb-4">Course Details</h2>
 
-                    <div className="flex gap-20 mt-4">
+                    <div className="flex flex-col md:flex-row gap-5 md:gap-20 mt-4">
                         <div className="space-y-4">
                             <h2 className="text-2xl font-bold mt-8">{course.title}</h2>
                             <p><strong>Teacher:</strong> {course.teacherName}</p>
@@ -43,7 +43,7 @@ const ClassDetails = () => {
                             <p><strong>Description:</strong> {course.description}</p>
                             <Link to="/dashboard/payment"><button className="btn bg-purple-600 text-white mt-6">Pay Now</button></Link>
                         </div>
-                        <img src={course.photo} alt={course.title} className="max-w-lg h-auto mb-6 rounded-lg" />
+                        <img src={course.photo} alt={course.title} className="md:max-w-lg h-auto md:mb-6 rounded-lg" />
                     </div>
                 </div>
             </div>

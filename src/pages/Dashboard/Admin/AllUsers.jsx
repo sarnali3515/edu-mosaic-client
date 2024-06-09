@@ -89,7 +89,7 @@ const AllUsers = () => {
     return (
         <div>
             <div>
-                <h2 className="text-3xl text-center font-bold mb-5">Manage All Users</h2>
+                <h2 className="text-xl md:text-3xl text-center font-bold mb-5">Manage All Users</h2>
                 <div className="flex justify-center mb-4">
                     <input
                         type="text"
@@ -153,7 +153,7 @@ const AllUsers = () => {
                 </div>
                 <div className="flex justify-between items-center mt-8 space-y-2">
                     <div className="text-left">
-                        <p className='text-purple-600 font-semibold'>
+                        <p className='text-xs md:text-base text-purple-600 font-semibold'>
                             Showing {indexOfFirstUser + 1} to {indexOfLastUser > users.length ? users.length : indexOfLastUser} of {users.length} results
                         </p>
                     </div>

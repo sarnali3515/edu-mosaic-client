@@ -68,7 +68,7 @@ const AddClass = () => {
                 <title>EduMosaic - Add Class</title>
             </Helmet>
             <div className="bg-purple-200 rounded-lg shadow-lg p-8 md:m-5 w-full md:w-11/12">
-                <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">Add a New Class</h2>
+                <h2 className="text-xl md:text-3xl font-bold text-center text-gray-800 mb-8">Add a New Class</h2>
                 <form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     <div className="form-control">
                         <label className="label text-gray-700">Title</label>

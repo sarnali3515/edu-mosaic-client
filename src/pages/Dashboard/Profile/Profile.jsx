@@ -28,7 +28,7 @@ const Profile = () => {
         <div >
 
             <div className="profile-container ">
-                <h2 className="text-3xl text-center font-bold mb-5">My Profile</h2>
+                <h2 className="text-xl md:text-3xl text-center font-bold mb-5">My Profile</h2>
                 <div className="profile-card bg-purple-200 shadow-xl rounded-lg overflow-hidden flex flex-col items-center p-8">
                     <img src={user.photoURL} alt={users.name} className="w-24 h-24 rounded-full object-cover mb-4" />
                     <h3 className="text-xl md:text-2xl font-semibold mb-2">{users.name}</h3>

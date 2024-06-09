@@ -24,7 +24,7 @@ const AdminClassDetails = () => {
             {
                 evaluations.map(evaluation =>
                     <div key={evaluation._id} className='relative mt-5'>
-                        <div className="card w-full h-48 bg-[#D5CAEB]">
+                        <div className="card w-full h-60 md:h-52 bg-[#D5CAEB]">
                             <div className="card-body">
                                 <p>{evaluation.description}</p>
                                 <Rating

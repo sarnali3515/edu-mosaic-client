@@ -84,7 +84,7 @@ const ManageAllClasses = () => {
 
     return (
         <div>
-            <h2 className="text-3xl text-center font-bold mb-5">Manage All Classes</h2>
+            <h2 className="text-xl md:text-3xl text-center font-bold mb-5">Manage All Classes</h2>
             <div className="overflow-x-auto shadow-md">
                 <table className="table">
                     {/* head */}
@@ -145,7 +145,7 @@ const ManageAllClasses = () => {
             </div>
             <div className="flex justify-between items-center mt-8 space-y-2">
                 <div className="text-left">
-                    <p>
+                    <p className='text-xs md:text-base text-purple-600'>
                         Showing {indexOfFirstClass + 1} to {indexOfLastClass > classes.length ? classes.length : indexOfLastClass} of {classes.length} results
                     </p>
                 </div>
