@@ -3,6 +3,7 @@ import { AiOutlineBars } from 'react-icons/ai'
 import { CgProfile } from "react-icons/cg";
 import { FaRegAddressCard } from "react-icons/fa";
 import { SiGoogleclassroom } from "react-icons/si";
+import { MdOutlinePendingActions } from "react-icons/md";
 import { FaUsers } from "react-icons/fa6";
 import { LiaChalkboardTeacherSolid } from "react-icons/lia";
 import { NavLink } from 'react-router-dom'
@@ -86,7 +87,8 @@ const Sidebar = () => {
 
                                     <MenuItem label="Add Class" address='add-class' icon={FaRegAddressCard}></MenuItem>
 
-                                    <MenuItem label="My Classes" address='my-classes' icon={SiGoogleclassroom}></MenuItem></>
+                                    <MenuItem label="My Classes" address='my-classes' icon={SiGoogleclassroom}></MenuItem>
+                                </>
 
                             }
                             {/* Student */}
@@ -95,6 +97,7 @@ const Sidebar = () => {
 
                                 <>
                                     <MenuItem label="My Enrolled Class" address='enroll-class' icon={FaRegAddressCard}></MenuItem>
+                                    <MenuItem label="My Requests" address='request' icon={MdOutlinePendingActions}></MenuItem>
                                 </>
 
                             }

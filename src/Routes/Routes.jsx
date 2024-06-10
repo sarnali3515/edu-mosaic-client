@@ -26,6 +26,7 @@ import StudentClassDetails from "../pages/Dashboard/Student/StudentClassDetails"
 import AdminClassDetails from "../pages/Dashboard/Admin/AdminClassDetails";
 import TeacherRoute from "./TeacherRoute";
 import AdminRoute from "./AdminRoute";
+import MyRequest from "../pages/Dashboard/Student/MyRequest";
 
 export const router = createBrowserRouter([
     {
@@ -123,6 +124,10 @@ export const router = createBrowserRouter([
             {
                 path: 'enroll-class/:id',
                 element: <PrivateRoute><StudentClassDetails></StudentClassDetails></PrivateRoute>
+            },
+            {
+                path: 'request',
+                element: <PrivateRoute><MyRequest></MyRequest></PrivateRoute>
             },
         ]
     }
