@@ -3,14 +3,14 @@ EduMosaic
 
 # Live Site Link: https://edu-mosaic-275a3.web.app/
 
-# Category : 
-Assignment12_category_0008
+//# Category : 
+//Assignment12_category_0008
 
 # Admin Credentials
 Username: kjsarnali2@gmail.com
 Password: KJsarnali2
 
-# Features
+/* # Features
 - Navbar offers easy navigation with intuitive options like Home, All Classes, and Profile dropdown functionality.
 - Homepage showcases featured classes, partner highlights, and user statistics for engaging user experience.
 - All Classes Page displays approved classes with essential details in a user-friendly card format.
@@ -23,6 +23,7 @@ Password: KJsarnali2
 - Sweet Alerts and Notifications provide user-friendly feedback for essential actions without interrupting the workflow.
 - Student Dashboard offers enrolled students easy access to their classes and profile settings for personalized learning experiences.
 - My Enrolled Classes Page presents enrolled classes in a user-friendly format, allowing students to continue learning with ease.
+*/
 
 # Technologies Used
 - HTML
