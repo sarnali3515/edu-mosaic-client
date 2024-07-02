@@ -45,7 +45,7 @@ authentication, ensuring a seamless and secure learning experience.
 - Ensure you have Node.js, npm or yarn, and Git installed.
 
 ## Installation
-- Clone the repository: git clone https://github.com/your-username/edumosaic.git 
+- Clone the repository: git clone https://github.com/sarnali3515/edu-mosaic-client.git 
 - cd edumosaic file
 - Install dependencies: npm install
 - Set up frontend environment variables (Firebase config): Create a .env file 
